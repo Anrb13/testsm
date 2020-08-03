@@ -1,27 +1,13 @@
 const {chromium, webkit, firefox} = require('playwright');
-const { baseUrl } = require('./config');
+const { baseUrl } = require('./url');
+const { cookieA1, cookieA2 } = require('./cookie');
 
 describe('screenshot tests', () => {
     const isoDate = (new Date()).toISOString();
     const formatedDate = isoDate.replace(/\:/g, '-'); //":" запрещен в названии файлов windows
     const browsers = [chromium, webkit, firefox];
 
-    const cookie = {          
-        domain: 'www.sportmaster.ru', 
-        path: '/',
-    };
-    const cookieAAB = { 
-        name: 'EMPTYAABTC',
-        ...cookie,
-    };
-    const cookieA1 = {
-        ...cookieAAB,
-        value: 'EMPTY_A1_VAR',
-    }
-    const cookieA2 = {
-        ...cookieAAB,
-        value: 'EMPTY_A2_VAR',
-    }
+
     
     for(let ABcookie of [ cookieA1,  cookieA2 ]) {
         for(let browserType of browsers) {
@@ -40,7 +26,7 @@ describe('screenshot tests', () => {
                 await page.click(confirmDefaultCity);
                 await page.waitForResponse((res) => res.url().startsWith(confirmApiUrl));
                 await page.screenshot({
-                    path: `screen/${browserType.name()}/${formatedDate}_${browserType.name()}_${ABcookie.value}.jpeg`,
+                    path: `screenshots/${browserType.name()}/${formatedDate}_${browserType.name()}_${ABcookie.value}.jpeg`,
                     fullPage: true,
                 });
                 await browser.close();

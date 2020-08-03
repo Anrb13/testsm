@@ -1,0 +1,39 @@
+const cookie = {          
+    domain: '.sportmaster.ru', 
+    path: '/',
+};
+
+//Куки для тестрования хедера
+const cookieAAB = { 
+    name: 'EMPTYAABTC',
+    ...cookie,
+};
+const cookieA1 = {
+    ...cookieAAB,
+    value: 'EMPTY_A1_VAR',
+};
+const cookieA2 = {
+    ...cookieAAB,
+    value: 'EMPTY_A2_VAR',
+};
+
+//Куки анонимного пользователя
+const cookieApple = {
+    name: 'apple',
+    value: 'SM01A2F5A766194ACCB701ABE3D73D8393',
+    ...cookie,
+}
+
+//Куки большого брюса баннера
+const cookieBanner = {
+    name: 'FULLPAGE_BANNER_LAST_SHOWN',
+    value: '1',
+    ...cookie,
+}
+
+module.exports = {
+    cookieA1,
+    cookieA2,
+    cookieApple,
+    cookieBanner,
+};
