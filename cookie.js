@@ -31,9 +31,17 @@ const cookieBanner = {
     ...cookie,
 }
 
+//Куки для показа выбора города
+const cookieCityConfirmed = {
+    name: 'chooseCityModalShow',
+    value: 'true',
+    ...cookie,
+}
+
 module.exports = {
     cookieA1,
     cookieA2,
     cookieApple,
     cookieBanner,
+    cookieCityConfirmed,
 };

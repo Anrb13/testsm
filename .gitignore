@@ -1,3 +1,4 @@
 /node_modules/
 .vscode
-/screen/
+/screenshots/
+/mobile/ignore.js

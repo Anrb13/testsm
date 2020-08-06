@@ -14,14 +14,14 @@ const selectors = {
         basketIcon: '.basket-icon',
     },
     old: {
-        burgerIcon: '.header-icon-bg-menu',
-        smLogoIcon: '.header-icon-bg-logo',
-        searchIcon: '.header-icon-bg-search',
-        closeSearchIcon: '.close-search-button',
-        clearSearchIcon: '.clear-search-button',
-        profileIcon: '.profile-icon',
-        basketIcon: '.basket-icon',
+        burgerIcon: 'header > div.td.bg-menu.head-icon',
+        smLogoIcon: 'header > a.td.bg-logo',
+        searchIcon: 'header > div.td.head-icon.svg-icon',
         searchInput: '#searchGoods_value',
+        closeSearchIcon: 'header > div.td.head-icon.svg-icon',
+        // clearSearchIcon: '',
+        // profileIcon: '',
+        basketIcon: 'header > a.td.head-icon.svg-icon.relative',
     },
 };
 

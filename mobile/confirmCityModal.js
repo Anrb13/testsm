@@ -6,25 +6,36 @@ const selectors = {
         anotherButton: '.esm-modal-btn_asLink',
     },
     old: {
-        okButton: '',
-        cancelButton: '',
-        anotherButton: '',
+        okButton: 'div.td.width-50pc.pdRight-5 > button',
+        anotherButton: 'div.td.width-50pc.pdLeft-5 > button',
     },
 };
 
 const confirmCity = async (page, variant = 'new') => {
     const { okButton } = selectors[variant];
-    await page.click(okButton);
+    try {
+        await page.click(okButton);
+    } catch (err) {
+        console.error('Ошибка клика по селектору ' + okButton);
+    }
 };
 
 const cancelCity = async (page, variant = 'new') => {
     const { cancelButton } = selectors[variant];
-    await page.click(cancelButton);
+    try {
+        await page.click(cancelButton);
+    } catch (err) {
+        console.error('Ошибка клика по селектору ' + cancelButton);
+    }
 };
 
 const anotherCity = async (page, variant = 'new') => {
     const { anotherButton } = selectors[variant];
-    await page.click(anotherButton);
+    try {
+        await page.click(anotherButton);
+    } catch (err) {
+        console.error('Ошибка клика по селектору ' + anotherButton);
+    }
 };
 
 module.exports = {
