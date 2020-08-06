@@ -1,6 +1,7 @@
 const {chromium, webkit, firefox} = require('playwright');
 const { baseUrl } = require('./url');
 const { cookieA1, cookieA2 } = require('./cookie');
+const { suites, headless } = require('../config');
 
 describe('screenshot tests', () => {
     const isoDate = (new Date()).toISOString();
@@ -12,9 +13,7 @@ describe('screenshot tests', () => {
     for(let ABcookie of [ cookieA1,  cookieA2 ]) {
         for(let browserType of browsers) {
             test(`should ${browserType.name()}`, async () => {
-                const browser = await browserType.launch({ 
-                    headless: false,
-                });
+                const browser = await browserType.launch({ headless });
                 const context = await browser.newContext();
                 const page = await context.newPage();
                 const url = baseUrl(true); //true if noscript=1

@@ -1,28 +1,14 @@
 const {chromium, devices, webkit} = require('playwright');
 const { mUrl } = require('../url');
 const { cookieA1, cookieA2, cookieApple, cookieBanner } = require('../cookie');
+const { suites, headless } = require('../config');
 const { confirmCity } = require('./confirmCityModal');
-
-const iPhone = 'iPhone 8';
-const pixel2 = 'Pixel 2';
-
-const suites = [
-    {
-        engine: chromium,
-        deviceNames: [iPhone, pixel2],
-    },
-    {
-        engine: webkit,
-        deviceNames: [iPhone],
-    },
-
-];
 
 const isoDate = (new Date()).toISOString();
 const formatedDate = isoDate.replace(/\:/g, '-'); //":" запрещен в названии файлов windows
 
 const screenTest = async (engine, deviceName, cookie = {}) => {
-    const browser = await engine.launch({ headless: true });
+    const browser = await engine.launch({ headless });
     const device = devices[deviceName];
     const context = await browser.newContext({ ...device });
     const page = await context.newPage();
