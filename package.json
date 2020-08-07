@@ -11,5 +11,8 @@
   "devDependencies": {
     "jest": "^26.1.0",
     "playwright": "^1.2.1"
+  },
+  "dependencies": {
+    "jpeg-js": "^0.4.1"
   }
 }

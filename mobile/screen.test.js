@@ -12,6 +12,7 @@ const screenTest = async (engine, deviceName, cookie = {}) => {
     const context = await browser.newContext({
         ...device,
         isMobile: true,
+        hasTouch: true,
         deviceScaleFactor: 1,
         });
     const page = await context.newPage();
