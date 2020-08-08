@@ -3,6 +3,7 @@ const { mUrl } = require('../url');
 const { cookieA1, cookieA2, cookieApple, cookieBanner, cookieCityConfirmed } = require('../cookies');
 const { confirmCity } = require('./pageObject/confirmCityModal');
 const { burger, smLogo, search, searchInput, clearSearch, closeSearch, profile, basket, } = require('./pageObject/header');
+const { suites, formatedDate } = require('../config');
 
 
 const iPhone = devices['iPhone 8'];
