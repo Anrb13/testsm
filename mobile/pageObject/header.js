@@ -1,5 +1,5 @@
 const assert = require('assert').strict;
-const {elementClick} = require('../../utils');
+const {elementClick} = require('../../utils/utils');
 
 //Элементы хедера главной
 const searchApiUrl = 'https://m.sportmaster.ru/rest/v1/search?';

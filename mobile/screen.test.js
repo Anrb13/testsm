@@ -1,10 +1,7 @@
 const { devices, } = require('playwright');
 const { mUrl, } = require('../url');
 const { cookieA1, cookieA2, cookieBanner, cookieCityConfirmed } = require('../cookies');
-const { suites, } = require('../config');
-
-const isoDate = (new Date()).toISOString();
-const formatedDate = isoDate.replace(/\:/g, '-'); //":" запрещен в названии файлов windows
+const { suites, formatedDate } = require('../config');
 
 const screenTest = async (engine, deviceName, cookie = {}) => {
     const browser = await engine.launch({ headless: false, slowMo: 100, });

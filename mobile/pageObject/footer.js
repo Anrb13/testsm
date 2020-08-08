@@ -1,15 +1,16 @@
 const assert = require('assert').strict;
-const {elementClick} = require('../../utils');
+const {elementClick} = require('../../utils/utils');
 
-// Селекторы футера которые не вошли в билдеры
-const region = 'div.layout-footer__menu__section__items-container > div:nth-child(1)';
-const eGiftcard = '.layout-footer__gift-card__container';
-const clubCard = '.layout-footer__club-card__container';
+//Селекторы футера которые не вошли в билдеры
+const region = 'div.layout-footer__menu > div:nth-child(3) > div.layout-footer__menu__section__items-container > div:nth-child(1)';
+const eGiftcard = '.layout-footer__gift-card__image';
+const clubCard = '.layout-footer__club-card__image';
 const yandexMarket = '.layout-footer__yandex-market';
-const fullVersion = '.layout-footer__full-version';
+const fullVersion = 'esm-footer > div > div.layout-footer__full-version > a';
 const androidApp = 'div.layout-footer__mobile-apps > div.layout-footer__image-container > a:nth-child(1)';
 const iosApp = 'div.layout-footer__mobile-apps > div.layout-footer__image-container > a:nth-child(2)';
 
+//Билдер для селекторов футера
 const parentSelector = ' > div.layout-footer__menu__section__items-container > ';
 const sectionBuilder = (a) => {
     const sectionSelector = 'div.layout-footer__menu > div:nth-child(';
@@ -95,37 +96,45 @@ const sectionContacts = async (page) => {
     elementClick(page, sectionBuilder(3));
 };
 
-const number = async (page) => {
+const numberFooter = async (page) => {
+    const regionFooter = await page.innerText(region);
+    if (regionFooter === 'Москва') {
+        let myNumber = await page.innerText(selectorBuilder(3, 2));
+        assert(myNumber === '8 495 777-777-1')
+    } else if (regionFooter === 'Санкт-Петербург') {
+        let myNumber = await page.innerText(selectorBuilder(3, 2));
+        assert(myNumber === ' 8 812 777-777-1')
+    } else {
+        let myNumber = await page.innerText(selectorBuilder(3, 2));
+        assert(myNumber === '8 800 777-777-1')
+    };
     elementClick(page, selectorBuilder(3, 2));
 };
-const email = async (page) => {
+const emailFooter = async (page) => {
     elementClick(page, selectorBuilder(3, 4));
 };
-const corpLink = async (page) => {
+const corpLinkFooter = async (page) => {
     elementClick(page, selectorBuilder(3, 6));
 };
 
 //Ссылки на соцсети
-const facebook = async (page) => {
+const facebookFooter = async (page) => {
     elementClick(page, socialBuilder(1));
 };
-const vkontakte = async (page) => {
+const vkontakteFooter = async (page) => {
     elementClick(page, socialBuilder(2));
 };
-const odnoklassniki = async (page) => {
+const odnoklassnikiFooter = async (page) => {
     elementClick(page, socialBuilder(3));
 };
-const instagram = async (page) => {
+const instagramFooter = async (page) => {
     elementClick(page, socialBuilder(4));
 };
-const youtube = async (page) => {
+const youtubeFooter = async (page) => {
     elementClick(page, socialBuilder(5));
 };
 
 //Остальное
-const regionFooter = async (page) => {
-    elementClick(page, region);
-};
 const eGiftcardFooter = async (page) => {
     elementClick(page, eGiftcard);
 };
@@ -135,9 +144,6 @@ const clubCardFooter = async (page) => {
 const yandexMarketFooter = async (page) => {
     elementClick(page, yandexMarket);
 };
-const fullVersionFooter = async (page) => {
-    elementClick(page, fullVersion);
-};
 const androidAppFooter = async (page) => {
     elementClick(page, androidApp);
 };
@@ -145,9 +151,17 @@ const iosAppFooter = async (page) => {
     elementClick(page, iosApp);
 };
 
-//todo: добавить всё в экспорт, проверить все клики через симплтест.
-module.exports = {
-    sectionService,
-    profileFooter,
+const fullVersionFooter = async (page) => {
+    elementClick(page, fullVersion);
 };
 
+
+module.exports = {
+    sectionService, profileFooter, deliveryFooter, exchangeFooter, serviceFooter,
+    warrantyFooter, reviewFooter, legalPersonFooter, sectionInfo, aboutCompanyFooter,
+    storesFooter, jobFooter, renterFooter, collaborationFooter, zakupkiFooter, contactsFooter,
+    newsFooter, promoFooter, projectsFooter, sectionContacts, numberFooter,
+    emailFooter, corpLinkFooter, facebookFooter, vkontakteFooter, odnoklassnikiFooter,
+    instagramFooter, youtubeFooter, eGiftcardFooter, clubCardFooter, yandexMarketFooter,
+    androidAppFooter, iosAppFooter, fullVersionFooter,
+};

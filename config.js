@@ -16,6 +16,10 @@ const suites = [
     }
 ];
 
+const isoDate = (new Date()).toISOString();
+const formatedDate = isoDate.replace(/\:/g, '-'); //":" запрещен в названии файлов windows
+
 module.exports = {
     suites,
+    formatedDate,
 };

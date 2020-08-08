@@ -1,3 +1,5 @@
+const {elementClick} = require('../../utils/utils');
+
 // Модальное окно выбора города
 const selectors = {
     new: {
@@ -13,29 +15,17 @@ const selectors = {
 
 const confirmCity = async (page, variant = 'new') => {
     const { okButton } = selectors[variant];
-    try {
-        await page.click(okButton);
-    } catch (err) {
-        console.error('Ошибка клика по селектору ' + okButton);
-    }
+    elementClick(page, okButton);
 };
 
 const cancelCity = async (page, variant = 'new') => {
     const { cancelButton } = selectors[variant];
-    try {
-        await page.click(cancelButton);
-    } catch (err) {
-        console.error('Ошибка клика по селектору ' + cancelButton);
-    }
+    elementClick(page, cancelButton);
 };
 
 const anotherCity = async (page, variant = 'new') => {
     const { anotherButton } = selectors[variant];
-    try {
-        await page.click(anotherButton);
-    } catch (err) {
-        console.error('Ошибка клика по селектору ' + anotherButton);
-    }
+    elementClick(page, anotherButton);
 };
 
 module.exports = {
