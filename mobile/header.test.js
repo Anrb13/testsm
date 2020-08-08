@@ -1,15 +1,19 @@
 const {chromium, devices, webkit} = require('playwright');
 const { mUrl } = require('../url');
-const { cookieA1, cookieA2, cookieApple, cookieBanner, cookieCityConfirmed } = require('../cookie');
-const { confirmCity } = require('./confirmCityModal');
-const { burger, smLogo, search, searchInput, clearSearch, closeSearch, profile, basket, } = require('./header')
+const { cookieA1, cookieA2, cookieApple, cookieBanner, cookieCityConfirmed } = require('../cookies');
+const { confirmCity } = require('./pageObject/confirmCityModal');
+const { burger, smLogo, search, searchInput, clearSearch, closeSearch, profile, basket, } = require('./pageObject/header');
+
 
 const iPhone = devices['iPhone 8'];
 // const pixel2 = 'Pixel 2';
 
 const headerTest = async() => {
     const browser = await chromium.launch({ headless: false, slowMo: 100, });
-    const context = await browser.newContext({ ...iPhone, isMobile: true, });
+    const context = await browser.newContext({
+        ...iPhone, 
+        isMobile: true, 
+        });
     const page = await context.newPage();
     await context.addCookies([cookieA2, cookieApple, cookieBanner, /*cookieCityConfirmed*/]);
     

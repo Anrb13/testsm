@@ -1,4 +1,4 @@
 /node_modules/
 .vscode
 /screenshots/
-/mobile/ignore.js
+/mobile/simple.test.js

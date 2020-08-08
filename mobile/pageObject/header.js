@@ -1,4 +1,5 @@
 const assert = require('assert').strict;
+const {elementClick} = require('../../utils');
 
 //Элементы хедера главной
 const searchApiUrl = 'https://m.sportmaster.ru/rest/v1/search?';
@@ -27,29 +28,37 @@ const selectors = {
 
 const burger = async (page, variant = 'new') => {
     const { burgerIcon } = selectors[variant];
-    try {
-        await page.click(burgerIcon);
-    } catch (err) {
-        console.error('Ошибка клика по селектору ' + burgerIcon);
-    }
+    elementClick(page, burgerIcon);
 };
 
 const smLogo = async (page, variant = 'new') => {
     const { smLogoIcon } = selectors[variant];
-    try {
-        await page.click(smLogoIcon);
-    } catch (err) {
-        console.error('Ошибка клика по селектору ' + smLogoIcon);
-    }
+    elementClick(page, smLogoIcon);
 };
 
 const search = async (page, variant = 'new') => {
     const { searchIcon } = selectors[variant];
-    try {
-        await page.click(searchIcon);
-    } catch (err) {
-        console.error('Ошибка клика по селектору ' + searchIcon);
-    }
+    elementClick(page, searchIcon);
+};
+
+const clearSearch = async (page, variant = 'new') => {
+    const { clearSearchIcon } = selectors[variant];
+    elementClick(page, clearSearchIcon);
+};
+
+const closeSearch = async (page, variant = 'new') => {
+    const { closeSearchIcon } = selectors[variant];
+    elementClick(page, closeSearchIcon);
+};
+
+const profile = async (page, variant = 'new') => {
+    const { profileIcon } = selectors[variant];
+    elementClick(page, profileIcon);
+};
+
+const basket = async (page, variant = 'new') => {
+    const { basketIcon } = selectors[variant];
+    elementClick(page, basketIcon);
 };
 
 const searchInput = async (page, variant = 'new', searchRequest) => {
@@ -62,49 +71,14 @@ const searchInput = async (page, variant = 'new', searchRequest) => {
     assert(textInc);
 };
 
-const clearSearch = async (page, variant = 'new') => {
-    const { clearSearchIcon } = selectors[variant];
-    try {
-        await page.click(clearSearchIcon);
-    } catch (err) {
-        console.error('Ошибка клика по селектору ' + clearSearchIcon);
-    }
-};
-
-const closeSearch = async (page, variant = 'new') => {
-    const { closeSearchIcon } = selectors[variant];
-    try {
-        await page.click(closeSearchIcon);
-    } catch (err) {
-        console.error('Ошибка клика по селектору ' + closeSearchIcon);
-    }
-};
-
-const profile = async (page, variant = 'new') => {
-    const { profileIcon } = selectors[variant];
-    try {
-        await page.click(profileIcon);
-    } catch (err) {
-        console.error('Ошибка клика по селектору ' + profileIcon);
-    }
-};
-
-const basket = async (page, variant = 'new') => {
-    const { basketIcon } = selectors[variant];
-    try {
-        await page.click(basketIcon);
-    } catch (err) {
-        console.error('Ошибка клика по селектору ' + basketIcon);
-    }
-};
 
 module.exports = {
     burger,
     smLogo,
     search,
-    searchInput,
     clearSearch,
     closeSearch,
     profile,
     basket,
+    searchInput,
 };

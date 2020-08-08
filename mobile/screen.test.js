@@ -1,6 +1,6 @@
 const { devices, } = require('playwright');
 const { mUrl, } = require('../url');
-const { cookieA1, cookieA2, cookieBanner, cookieCityConfirmed } = require('../cookie');
+const { cookieA1, cookieA2, cookieBanner, cookieCityConfirmed } = require('../cookies');
 const { suites, } = require('../config');
 
 const isoDate = (new Date()).toISOString();
