@@ -1,4 +1,4 @@
-const {elementClick} = require('../../utils/utils');
+const {elementClick} = require('../../utils');
 
 // Модальное окно выбора города
 const selectors = {

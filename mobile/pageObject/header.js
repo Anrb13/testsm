@@ -1,5 +1,5 @@
 const assert = require('assert').strict;
-const {elementClick} = require('../../utils/utils');
+const { elementClick } = require('../../utils');
 
 //Элементы хедера главной
 const searchApiUrl = 'https://m.sportmaster.ru/rest/v1/search?';
@@ -63,12 +63,11 @@ const basket = async (page, variant = 'new') => {
 
 const searchInput = async (page, variant = 'new', searchRequest) => {
     const { searchInput } = selectors[variant];
-    await page.type(searchInput, searchRequest);
+    await page.fill(searchInput, searchRequest);
     await page.press(searchInput, 'Enter');
     await page.waitForResponse((res) => res.url().startsWith(searchApiUrl));
     const searchResponse = await page.innerText('esm-search-tiles > div > div:nth-child(3)');
-    const textInc = searchResponse.includes(searchRequest);
-    assert(textInc);
+    assert(searchResponse.includes(searchRequest));
 };
 
 

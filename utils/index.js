@@ -1,6 +1,6 @@
 const { formatedDate } = require('../config');
 
-//todo: добавить тайтл теста или функции название скриншота с ошибкой
+//todo: добавить тайтл теста или функции в название скриншота с ошибкой
 const elementClick = async (page, selector) => {
     try {
         await page.click(selector);

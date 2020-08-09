@@ -1,5 +1,5 @@
 const assert = require('assert').strict;
-const {elementClick} = require('../../utils/utils');
+const {elementClick} = require('../../utils');
 
 //Селекторы футера которые не вошли в билдеры
 const region = 'div.layout-footer__menu > div:nth-child(3) > div.layout-footer__menu__section__items-container > div:nth-child(1)';
