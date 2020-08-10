@@ -1,6 +1,6 @@
 const {chromium, webkit, firefox} = require('playwright');
 const { baseUrl } = require('../url');
-const { cookieA1, cookieA2, cookieCityConfirmed } = require('../cookie');
+const { cookieA1, cookieA2, cookieCityConfirmed } = require('../cookies');
 const { headless } = require('../config');
 
 const browsers = [chromium, webkit, firefox];
@@ -14,7 +14,7 @@ const test = async (browserType, cookie) => {
     const page = await context.newPage();
     
     await context.addCookies([ cookie, cookieCityConfirmed ]);
-    await page.goto(baseUrl, {timeout: 0});
+    await page.goto(baseUrl);
     await page.screenshot({
         path: `screenshots/${browserType.name()}/${formatedDate}_${browserType.name()}_${cookie.value}.jpeg`,
         // fullPage: true,

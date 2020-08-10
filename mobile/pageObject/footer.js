@@ -1,8 +1,19 @@
 const assert = require('assert').strict;
 const {elementClick} = require('../../utils');
 
+const footerMenu = 'div.layout-footer__menu';
+const footerMenuSectionsContainer = 'div.layout-footer__menu__section__items-container';
+
+const getChild = (parent, child, number) => {
+    const ph = `${parent} > ${child}`;
+    return `${parent} > ${child}${number ? `:nth-child(${number})` : ''}`;
+};
+
+//todo осмыслить функцию
+const newRegion = getChild(getChild(getChild(footerMenu, 'div', 3), footerMenuSectionsContainer), 'div', 1);
+
 //Селекторы футера которые не вошли в билдеры
-const region = 'div.layout-footer__menu > div:nth-child(3) > div.layout-footer__menu__section__items-container > div:nth-child(1)';
+const region = 'div.layout-footer__menu__section__items-container > div:nth-child(1)';
 const eGiftcard = '.layout-footer__gift-card__image';
 const clubCard = '.layout-footer__club-card__image';
 const yandexMarket = '.layout-footer__yandex-market';
@@ -27,6 +38,7 @@ const socialBuilder = (d) => {
     let social = sectionBuilder(3) + socialSelector + d + ')';
     return social;
 };
+
 
 //Секция 'Сервис и помощь'
 const sectionService = async (page) => {
@@ -96,6 +108,7 @@ const sectionContacts = async (page) => {
     elementClick(page, sectionBuilder(3));
 };
 
+//todo: мокаем запрос города и номер, подставляем значения.
 const numberFooter = async (page) => {
     const regionFooter = await page.innerText(region);
     if (regionFooter === 'Москва') {
@@ -163,5 +176,5 @@ module.exports = {
     newsFooter, promoFooter, projectsFooter, sectionContacts, numberFooter,
     emailFooter, corpLinkFooter, facebookFooter, vkontakteFooter, odnoklassnikiFooter,
     instagramFooter, youtubeFooter, eGiftcardFooter, clubCardFooter, yandexMarketFooter,
-    androidAppFooter, iosAppFooter, fullVersionFooter,
+    androidAppFooter, iosAppFooter, fullVersionFooter, newRegion,
 };

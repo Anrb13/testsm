@@ -1,16 +1,14 @@
 const { devices, } = require('playwright');
 const { mUrl, } = require('../url');
-const { cookieA1, cookieA2, cookieBanner, cookieCityConfirmed } = require('../cookies');
-const { suites, formatedDate } = require('../config');
+const { cookieA1, cookieA2, cookieBanner, cookieCityConfirmed, } = require('../cookies');
+const { suites, formatedDate, } = require('../config');
 
 const screenTest = async (engine, deviceName, cookie = {}) => {
     const browser = await engine.launch({ headless: false, slowMo: 100, });
     const device = devices[deviceName];
     const context = await browser.newContext({
         ...device,
-        isMobile: true,
-        hasTouch: true,
-        deviceScaleFactor: 1,
+        locale: 'ru-RU',
         });
     const page = await context.newPage();
     
