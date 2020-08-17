@@ -1,27 +1,25 @@
-const { formatedDate } = require('../config');
+const getTime = async() => {
+    const isoDate = (new Date()).toISOString();
+    const formatedDate = isoDate.replace(/\:/g, '-'); //":" запрещен в названии файлов windows
+    return formatedDate;
+};
 
-//todo: добавить тайтл теста или функции в название скриншота с ошибкой
 const elementClick = async (page, selector) => {
+    const time = await getTime();
     try {
         await page.click(selector);
     } catch (err) {
         const message = 'Ошибка клика по селектору ' + selector;
+        console.log(err);
         await page.screenshot({
-            path: `errors/cant_click_element_${formatedDate}.jpeg`
-            });
-    throw new Error(message);
+            path: `errors/cant_click_element_${time}.jpeg`
+        });
+        throw new Error(message);
     };
 };
 
-// const goTo = async (page, selector) => {
-//     await elementClick(page, selector);
-//     try {
-//         await page.waitForNavigation()
-//     } catch (err) {
-//         console.error('Ошибка перехода по клику селектора ' + selector);
-//     };
-// };
 
 module.exports = {
     elementClick,
+    getTime,
 };

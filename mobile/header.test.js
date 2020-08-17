@@ -1,37 +1,38 @@
-const assert = require('assert').strict;
+//Тесты на новый хедер (кука A2)
 const {chromium, devices, webkit} = require('playwright');
 const { mUrl } = require('../url');
-const { cookieA1, cookieA2, cookieApple, cookieBanner, cookieCityConfirmed } = require('../cookies');
-const { confirmCity } = require('./pageObject/confirmCityModal');
+const { cookieA1, cookieA2, cookieBanner, cookieCityConfirmed } = require('../cookies');
 const { burger, smLogo, search, searchInput, clearSearch, 
         closeSearch, profile, basket, } = require('./pageObject/header');
-const { suites, formatedDate } = require('../config');
-
 
 const iPhone = devices['iPhone 8'];
 // const pixel2 = 'Pixel 2';
 
-const headerTest = async() => {
-    const browser = await chromium.launch({ headless: false, slowMo: 50, });
-    const context = await browser.newContext({
-        ...iPhone, 
-        isMobile: true, 
-        });
-    const page = await context.newPage();
-    await context.addCookies([cookieA2, cookieApple, cookieBanner, cookieCityConfirmed]);
-    
-    await page.goto(mUrl);
-    // await confirmCity(page, 'new');
-    await burger(page, 'new');
-    await burger(page, 'new');
-    await search(page, 'new');
-    await searchInput(page, 'new', '123123');
-    // await closeSearch(page, 'new');
-    // await basket(page, 'new');
-    // await smLogo(page, 'new');
-    // await profile(page, 'new');
-    // await profile(page, 'new');
-    // await browser.close();
-};
+describe('Header tests', () => {
+    let browser;
+    let context;
+    let page;
 
-headerTest();
+    beforeAll( async () => {
+        browser = await chromium.launch({ headless: false, slowMo: 300 });
+        context = await browser.newContext({ ...devices[iPhone], deviceScaleFactor: 1, });
+        await context.addCookies([ cookieA2, cookieBanner, cookieCityConfirmed, ]);
+    });
+    beforeEach( async () => {
+        page = await context.newPage();
+        await page.goto(mUrl);
+    });
+    afterEach( async () => {
+        await page.close();
+    });
+    afterAll( async () => {
+        await browser.close();
+    });
+
+    test('Burger icon opens the menu and close it', async () => {
+        await burger(page, 'new');
+        await page.waitForSelector('text=/Женщинам/');
+        await burger(page, 'new');
+        await page.waitForSelector('.header-icon-bg-search');
+    });
+});

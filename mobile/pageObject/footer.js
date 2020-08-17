@@ -1,16 +1,16 @@
 const assert = require('assert').strict;
 const {elementClick} = require('../../utils');
 
-const footerMenu = 'div.layout-footer__menu';
-const footerMenuSectionsContainer = 'div.layout-footer__menu__section__items-container';
+// const footerMenu = 'div.layout-footer__menu';
+// const footerMenuSectionsContainer = 'div.layout-footer__menu__section__items-container';
 
-const getChild = (parent, child, number) => {
-    const ph = `${parent} > ${child}`;
-    return `${parent} > ${child}${number ? `:nth-child(${number})` : ''}`;
-};
+// const getChild = (parent, child, number) => {
+//     const ph = `${parent} > ${child}`;
+//     return `${parent} > ${child}${number ? `:nth-child(${number})` : ''}`;
+// };
 
-//todo осмыслить функцию
-const newRegion = getChild(getChild(getChild(footerMenu, 'div', 3), footerMenuSectionsContainer), 'div', 1);
+// //todo осмыслить функцию
+// const newRegion = getChild(getChild(getChild(footerMenu, 'div', 3), footerMenuSectionsContainer), 'div', 1);
 
 //Селекторы футера которые не вошли в билдеры
 const region = 'div.layout-footer__menu__section__items-container > div:nth-child(1)';
@@ -20,6 +20,8 @@ const yandexMarket = '.layout-footer__yandex-market';
 const fullVersion = 'esm-footer > div > div.layout-footer__full-version > a';
 const androidApp = 'div.layout-footer__mobile-apps > div.layout-footer__image-container > a:nth-child(1)';
 const iosApp = 'div.layout-footer__mobile-apps > div.layout-footer__image-container > a:nth-child(2)';
+const privacy = 'div.layout-footer__copyright > a:nth-child(2)';
+const oferta = 'div.layout-footer__copyright > a:nth-child(3)';
 
 //Билдер для селекторов футера
 const parentSelector = ' > div.layout-footer__menu__section__items-container > ';
@@ -42,65 +44,65 @@ const socialBuilder = (d) => {
 
 //Секция 'Сервис и помощь'
 const sectionService = async (page) => {
-    elementClick(page, sectionBuilder(1));
+    await elementClick(page, sectionBuilder(1));
 };
 
 const profileFooter = async (page) => {
-    elementClick(page, selectorBuilder(1, 1));
+    await elementClick(page, selectorBuilder(1, 1));
 };
 const deliveryFooter = async (page) => {
-    elementClick(page, selectorBuilder(1, 2));
+    await elementClick(page, selectorBuilder(1, 2));
 };
 const exchangeFooter = async (page) => {
-    elementClick(page, selectorBuilder(1, 3));
+    await elementClick(page, selectorBuilder(1, 3));
 };
 const serviceFooter = async (page) => {
-    elementClick(page, selectorBuilder(1, 4));
+    await elementClick(page, selectorBuilder(1, 4));
 };
 const warrantyFooter = async (page) => {
-    elementClick(page, selectorBuilder(1, 5));
+    await elementClick(page, selectorBuilder(1, 5));
 };
 const reviewFooter = async (page) => {
-    elementClick(page, selectorBuilder(1, 6));
+    await elementClick(page, selectorBuilder(1, 6));
 };
 const legalPersonFooter = async (page) => {
-    elementClick(page, selectorBuilder(1, 7));
+    await elementClick(page, selectorBuilder(1, 7));
 };
 
 //Секция 'Информация'
 const sectionInfo = async (page) => {
-    elementClick(page, sectionBuilder(2));
+    await elementClick(page, sectionBuilder(2));
 };
 
 const aboutCompanyFooter = async (page) => {
-    elementClick(page, selectorBuilder(2, 1));
+    await elementClick(page, selectorBuilder(2, 1));
 };
 const storesFooter = async (page) => {
-    elementClick(page, selectorBuilder(2, 2));
+    await elementClick(page, selectorBuilder(2, 2));
 };
 const jobFooter = async (page) => {
-    elementClick(page, selectorBuilder(2, 3));
+    await elementClick(page, selectorBuilder(2, 3));
 };
 const renterFooter = async (page) => {
-    elementClick(page, selectorBuilder(2, 4));
+    await elementClick(page, selectorBuilder(2, 4));
 };
 const collaborationFooter = async (page) => {
-    elementClick(page, selectorBuilder(2, 5));
+    await elementClick(page, selectorBuilder(2, 5));
 };
 const zakupkiFooter = async (page) => {
-    elementClick(page, selectorBuilder(2, 6));
+    await elementClick(page, selectorBuilder(2, 6));
 };
 const contactsFooter = async (page) => {
-    elementClick(page, selectorBuilder(2, 7));
+    await elementClick(page, selectorBuilder(2, 7));
 };
 const newsFooter = async (page) => {
-    elementClick(page, selectorBuilder(2, 8));
+    await elementClick(page, selectorBuilder(2, 8));
 };
 const promoFooter = async (page) => {
-    elementClick(page, selectorBuilder(2, 9));
+    await elementClick(page, selectorBuilder(2, 9));
 };
 const projectsFooter = async (page) => {
-    elementClick(page, selectorBuilder(2, 10));
+    await elementClick(page, selectorBuilder(2, 10));
 };
 
 //Секция 'Контакты'
@@ -121,53 +123,57 @@ const numberFooter = async (page) => {
         let myNumber = await page.innerText(selectorBuilder(3, 2));
         assert(myNumber === '8 800 777-777-1')
     };
-    elementClick(page, selectorBuilder(3, 2));
+    await elementClick(page, selectorBuilder(3, 2));
 };
 const emailFooter = async (page) => {
-    elementClick(page, selectorBuilder(3, 4));
+    await elementClick(page, selectorBuilder(3, 4));
 };
 const corpLinkFooter = async (page) => {
-    elementClick(page, selectorBuilder(3, 6));
+    await elementClick(page, selectorBuilder(3, 6));
 };
 
 //Ссылки на соцсети
 const facebookFooter = async (page) => {
-    elementClick(page, socialBuilder(1));
+    await elementClick(page, socialBuilder(1));
 };
 const vkontakteFooter = async (page) => {
-    elementClick(page, socialBuilder(2));
+    await elementClick(page, socialBuilder(2));
 };
 const odnoklassnikiFooter = async (page) => {
-    elementClick(page, socialBuilder(3));
+    await elementClick(page, socialBuilder(3));
 };
 const instagramFooter = async (page) => {
-    elementClick(page, socialBuilder(4));
+    await elementClick(page, socialBuilder(4));
 };
 const youtubeFooter = async (page) => {
-    elementClick(page, socialBuilder(5));
+    await elementClick(page, socialBuilder(5));
 };
 
 //Остальное
 const eGiftcardFooter = async (page) => {
-    elementClick(page, eGiftcard);
+    await elementClick(page, eGiftcard);
 };
 const clubCardFooter = async (page) => {
-    elementClick(page, clubCard);
+    await elementClick(page, clubCard);
 };
 const yandexMarketFooter = async (page) => {
-    elementClick(page, yandexMarket);
+    await elementClick(page, yandexMarket);
 };
 const androidAppFooter = async (page) => {
-    elementClick(page, androidApp);
+    await elementClick(page, androidApp);
 };
 const iosAppFooter = async (page) => {
-    elementClick(page, iosApp);
+    await elementClick(page, iosApp);
 };
-
 const fullVersionFooter = async (page) => {
-    elementClick(page, fullVersion);
+    await elementClick(page, fullVersion);
 };
-
+const privacyFooter = async (page) => {
+    await elementClick(page, privacy);
+};
+const ofertaFooter = async (page) => {
+    await elementClick(page, oferta);
+};
 
 module.exports = {
     sectionService, profileFooter, deliveryFooter, exchangeFooter, serviceFooter,
@@ -176,5 +182,5 @@ module.exports = {
     newsFooter, promoFooter, projectsFooter, sectionContacts, numberFooter,
     emailFooter, corpLinkFooter, facebookFooter, vkontakteFooter, odnoklassnikiFooter,
     instagramFooter, youtubeFooter, eGiftcardFooter, clubCardFooter, yandexMarketFooter,
-    androidAppFooter, iosAppFooter, fullVersionFooter, newRegion,
+    androidAppFooter, iosAppFooter, fullVersionFooter, privacyFooter, ofertaFooter,
 };

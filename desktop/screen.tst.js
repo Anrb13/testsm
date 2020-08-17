@@ -1,17 +1,16 @@
 const {chromium, webkit, firefox} = require('playwright');
-const { baseUrl } = require('../url');
 const { cookieA1, cookieA2, cookieCityConfirmed } = require('../cookies');
-const { headless } = require('../config');
+const { baseUrl } = require('../url');
+const { getTime, } = require('../utils');
 
 const browsers = [chromium, webkit, firefox];
 const cookies = [ cookieA1,  cookieA2 ];
-const isoDate = (new Date()).toISOString();
-const formatedDate = isoDate.replace(/\:/g, '-'); //":" запрещен в названии файлов windows
 
 const test = async (browserType, cookie) => {
     const browser = await browserType.launch({ headless: false, slowMo: 50 });
     const context = await browser.newContext();
     const page = await context.newPage();
+    const formatedDate = await getTime();
     
     await context.addCookies([ cookie, cookieCityConfirmed ]);
     await page.goto(baseUrl);

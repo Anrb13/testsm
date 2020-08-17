@@ -28,37 +28,37 @@ const selectors = {
 
 const burger = async (page, variant = 'new') => {
     const { burgerIcon } = selectors[variant];
-    elementClick(page, burgerIcon);
+    await elementClick(page, burgerIcon);
 };
 
 const smLogo = async (page, variant = 'new') => {
     const { smLogoIcon } = selectors[variant];
-    elementClick(page, smLogoIcon);
+    await elementClick(page, smLogoIcon);
 };
 
 const search = async (page, variant = 'new') => {
     const { searchIcon } = selectors[variant];
-    elementClick(page, searchIcon);
+    await elementClick(page, searchIcon);
 };
 
 const clearSearch = async (page, variant = 'new') => {
     const { clearSearchIcon } = selectors[variant];
-    elementClick(page, clearSearchIcon);
+    await elementClick(page, clearSearchIcon);
 };
 
 const closeSearch = async (page, variant = 'new') => {
     const { closeSearchIcon } = selectors[variant];
-    elementClick(page, closeSearchIcon);
+    await elementClick(page, closeSearchIcon);
 };
 
 const profile = async (page, variant = 'new') => {
     const { profileIcon } = selectors[variant];
-    elementClick(page, profileIcon);
+    await elementClick(page, profileIcon);
 };
 
 const basket = async (page, variant = 'new') => {
     const { basketIcon } = selectors[variant];
-    elementClick(page, basketIcon);
+    await elementClick(page, basketIcon);
 };
 
 const searchInput = async (page, variant = 'new', searchRequest) => {
@@ -67,7 +67,7 @@ const searchInput = async (page, variant = 'new', searchRequest) => {
     await page.press(searchInput, 'Enter');
     await page.waitForResponse((res) => res.url().startsWith(searchApiUrl));
     const searchResponse = await page.innerText('esm-search-tiles > div > div:nth-child(3)');
-    assert(searchResponse.includes(searchRequest));
+    await expect(searchResponse).toContain(searchRequest);
 };
 
 

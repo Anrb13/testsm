@@ -1,7 +1,9 @@
 const { devices, } = require('playwright');
 const { mUrl, } = require('../url');
 const { cookieA1, cookieA2, cookieBanner, cookieCityConfirmed, } = require('../cookies');
-const { suites, formatedDate, } = require('../config');
+const { suites, } = require('../suites');
+const { getTime, } = require('../utils');
+
 
 const screenTest = async (engine, deviceName, cookie = {}) => {
     const browser = await engine.launch({ headless: false, slowMo: 100, });
@@ -11,6 +13,7 @@ const screenTest = async (engine, deviceName, cookie = {}) => {
         locale: 'ru-RU',
         });
     const page = await context.newPage();
+    const formatedDate = await getTime();
     
     await context.addCookies([ cookie, cookieBanner, cookieCityConfirmed ]);
     await page.goto(mUrl, { waitUntil: 'networkidle' });
