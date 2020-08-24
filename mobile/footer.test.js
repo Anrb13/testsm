@@ -10,8 +10,6 @@ const { sectionService, profileFooter, deliveryFooter, exchangeFooter, serviceFo
     yandexMarketFooter, androidAppFooter, iosAppFooter, fullVersionFooter, privacyFooter,
     ofertaFooter, } = require('./pageObject/footer');
 
-const iPhone = 'iPhone 8';
-
 describe('Footer tests', () => {
     let browser;
     let context;
@@ -19,16 +17,19 @@ describe('Footer tests', () => {
 
     beforeAll( async () => {
         browser = await chromium.launch({ headless: true, });
-        context = await browser.newContext({ ...devices[iPhone], deviceScaleFactor: 1, });
+        context = await browser.newContext({ ...devices['iPhone 8'] });
         await context.addCookies([ cookieBanner, cookieCityConfirmed ]);
     });
+
     beforeEach( async () => {
         page = await context.newPage();
-        await page.goto(mUrl + '/?noscript=1',/* { waitUntil: 'networkidle' }*/);
+        await page.goto(mUrl + '/?noscript=1');
     });
+
     afterEach( async () => {
         await page.close();
     });
+    
     afterAll( async () => {
         await browser.close();
     });

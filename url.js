@@ -1,6 +1,6 @@
-const baseUrl = 'https://www.sportmaster.ru';
+const baseUrl = 'https://www.uat.moscow.sportmaster.ru';
 
-const mUrl = 'https://m.sportmaster.ru';
+const mUrl = 'https://m.uat.moscow.sportmaster.ru';
 
 
 module.exports = {

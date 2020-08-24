@@ -17,7 +17,6 @@ const chooseSubcategory = async (page, n = 1) => {
 };
 
 
-
 module.exports = {
     breadcrumbs,
     chooseSubcategory,
