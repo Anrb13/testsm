@@ -9,12 +9,11 @@ const elementClick = async (page, selector) => {
     try {
         await page.click(selector);
     } catch (err) {
-        const message = 'Ошибка клика по селектору ' + selector;
-        console.log(err);
+        console.error('Ошибка клика по селектору ' + selector);
+        console.error(err);
         await page.screenshot({
-            path: `errors/cant_click_element_${time}.jpeg`
+            path: `mobile/errors/cant_click_element_${time}.jpeg`
         });
-        throw new Error(message);
     };
 };
 

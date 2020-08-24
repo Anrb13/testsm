@@ -18,11 +18,11 @@ const cookieA2 = {
 };
 
 //Куки анонимного пользователя
-const cookieApple = {
-    name: 'apple',
-    value: 'SM01A2F5A766194ACCB701ABE3D73D8393',
-    ...cookie,
-}
+// const cookieApple = {
+//     name: 'apple',
+//     value: 'SM01A2F5A766194ACCB701ABE3D73D8393',
+//     ...cookie,
+// }
 
 //Куки большого брюса баннера
 const cookieBanner = {
@@ -38,10 +38,16 @@ const cookieCityConfirmed = {
     ...cookie,
 }
 
+const cookieUniverse = {
+    name: 'universe',
+    value: 'SMFC598977B2564860AF5C5C40B30F88FA',
+    ...cookie,
+}
+
 module.exports = {
     cookieA1,
     cookieA2,
-    cookieApple,
     cookieBanner,
     cookieCityConfirmed,
+    cookieUniverse,
 };

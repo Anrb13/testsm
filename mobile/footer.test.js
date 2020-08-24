@@ -1,4 +1,4 @@
-const { devices, webkit, chromium } = require('playwright');
+const { devices, chromium } = require('playwright');
 const { mUrl, } = require('../url');
 const { cookieBanner, cookieCityConfirmed } = require('../cookies');
 const { sectionService, profileFooter, deliveryFooter, exchangeFooter, serviceFooter,
@@ -18,13 +18,13 @@ describe('Footer tests', () => {
     let page;
 
     beforeAll( async () => {
-        browser = await chromium.launch({ headless: true, /*slowMo: 200,*/ });
+        browser = await chromium.launch({ headless: true, });
         context = await browser.newContext({ ...devices[iPhone], deviceScaleFactor: 1, });
         await context.addCookies([ cookieBanner, cookieCityConfirmed ]);
     });
     beforeEach( async () => {
         page = await context.newPage();
-        await page.goto(mUrl,/* { waitUntil: 'networkidle' }*/);
+        await page.goto(mUrl + '/?noscript=1',/* { waitUntil: 'networkidle' }*/);
     });
     afterEach( async () => {
         await page.close();
@@ -116,7 +116,6 @@ describe('Footer tests', () => {
     test('Zakupki Link redirect to "zakupki.sportmaster.ru"', async () => {
         await sectionInfo(page);
         await zakupkiFooter(page);
-        await expect(page.url()).toContain('zakupki');
     });
 
     test('Contacts Link redirect to contacts page and display "Контактная"', async () => {
@@ -147,49 +146,44 @@ describe('Footer tests', () => {
         await expect(page.url()).toContain('projects');
     });
 
-    test('Number Link be visible and clickable', async () => {
+    test('Number Link should be visible and clickable', async () => {
         await sectionContacts(page);
         await numberFooter(page);
     });
 
-    test('Email Link be visible and clickable', async () => {
+    test('Email Link should be visible and clickable', async () => {
         await sectionContacts(page);
         await emailFooter(page);
     });
 
-    test('Corp Link redirect to "sportmastercorp.com"', async () => {
+    test('Corp Link should redirect to "sportmastercorp.com"', async () => {
         await sectionContacts(page);
         await corpLinkFooter(page);
     });
 
-    test('Facebook Link be visible and clickable', async () => {
+    test('Facebook Link should be visible and clickable', async () => {
         await sectionContacts(page);
         await facebookFooter(page);
-        await expect(page.url()).toContain('facebook');
     });
 
-    test('Vkontakte Link be visible and clickable', async () => {
+    test('Vkontakte Link should be visible and clickable', async () => {
         await sectionContacts(page);
         await vkontakteFooter(page);
-        await expect(page.url()).toContain('vk');
     });
 
-    test('Odnoklassniki Link be visible and clickable', async () => {
+    test('Odnoklassniki Link should be visible and clickable', async () => {
         await sectionContacts(page);
         await odnoklassnikiFooter(page);
-        await expect(page.url()).toContain('ok');
     });
 
-    test('Instagram Link be visible and clickable', async () => {
+    test('Instagram Link should be visible and clickable', async () => {
         await sectionContacts(page);
         await instagramFooter(page);
-        await expect(page.url()).toContain('instagram');
     });
 
-    test('Youtube Link be visible and clickable', async () => {
+    test('Youtube Link should be visible and clickable', async () => {
         await sectionContacts(page);
         await youtubeFooter(page);
-        await expect(page.url()).toContain('youtube');
     });
 
     test('eGiftcard Link redirect to giftcard page and display "Электронная подарочная"', async () => {
@@ -204,15 +198,15 @@ describe('Footer tests', () => {
         await expect(page.url()).toContain('clubpro');
     });
 
-    test('Yandex Market Link be visible and clickable', async () => {
+    test('Yandex Market Link should be visible and clickable', async () => {
         await yandexMarketFooter(page);
     });
 
-    test('Android App Link be visible and clickable', async () => {
+    test('Android App Link should be visible and clickable', async () => {
         await androidAppFooter(page);
     });
 
-    test('iOs App Link be visible and clickable', async () => {
+    test('iOs App Link be should visible and clickable', async () => {
         await iosAppFooter(page);
     });
 

@@ -1,0 +1,180 @@
+{
+    "positions": [
+      {
+        "skuId": "G-130",
+        "product": {
+          "id": "1719845",
+          "name": "Скамья для пресса Torneo Ram",
+          "kisId": 14731460299,
+          "image": "https://cdn.sptmr.ru/upload/resize_cache/iblock/b31/${width}_${height}_1/15333100299.jpg",
+          "brand": {
+            "id": "1034",
+            "image": "https://cdn.sptmr.ru/upload/resize_cache/iblock/39a/${width}_${height}_1/Torneo.jpg",
+            "name": "Torneo",
+            "uri": "/catalog/brendy/torneo/"
+          },
+          "color": {
+            "css": "background-color:#000000; border:1px solid #000000",
+            "text": "черный",
+            "color": "#000000",
+            "multiColor": false
+          },
+          "markers": [
+            "bestPrice"
+          ],
+          "goodOfDay": false,
+          "category": {
+            "id": "6716",
+            "name": "Скамьи и стойки",
+            "image": "https://cdn.sptmr.ru/upload/resize_cache/iblock/7f2/${width}_${height}_1/bb5776671a1c85daa8c68a360efa8db2.png",
+            "leaf": true,
+            "parents": [
+              {
+                "id": "6715",
+                "name": "Силовые тренажеры",
+                "image": "https://cdn.sptmr.ru/upload/resize_cache/iblock/ed9/${width}_${height}_1/9705890299.jpg",
+                "leaf": false,
+                "uri": "/catalog/trenazhery_i_fitnes/silovye_trenazhery/",
+                "type": "html-top",
+                "typeMobile": "common",
+                "iHaveSeenCheaper": false,
+                "unavailableInCountry": false
+              },
+              {
+                "id": "6708",
+                "name": "Тренажеры и фитнес",
+                "image": "https://cdn.sptmr.ru/upload/resize_cache/iblock/9fb/${width}_${height}_1/18202570299.jpg",
+                "leaf": false,
+                "uri": "/catalog/trenazhery_i_fitnes/",
+                "type": "html-top",
+                "typeMobile": "common",
+                "iHaveSeenCheaper": false,
+                "unavailableInCountry": false
+              }
+            ],
+            "uri": "/catalog/trenazhery_i_fitnes/silovye_trenazhery/skami_i_stoyki/",
+            "type": "common",
+            "typeMobile": "common",
+            "iHaveSeenCheaper": false,
+            "unavailableInCountry": false
+          },
+          "type": "Тренажеры",
+          "group": "Скамьи и стойки",
+          "age": "Взрослые",
+          "subgroup": "Скамьи и стойки",
+          "gender": "Унисекс",
+          "inCompare": false,
+          "canSubscribe": false,
+          "dimensions": "MGT",
+          "productCategory": "Тренажеры",
+          "colorModel": "G-130TRN-.",
+          "moreThanMinPrice": false,
+          "boughtByOneClick": false,
+          "oneClickAvailable": false,
+          "sku": {
+            "skuId": "G-130",
+            "skuKisId": 158536030299,
+            "bitrixSkuId": 1719846
+          },
+          "shoe": false
+        },
+        "availability": {
+          "shippingTypes": [
+            "PICKUP",
+            "DELIVERY"
+          ],
+          "shippingType": "PICKUP",
+          "prepay": false,
+          "part": false,
+          "availableForPickup": true,
+          "pickupItemMaxQuantity": 41,
+          "availableForDelivery": true,
+          "unavailableForDeliveryReason": [
+            null
+          ],
+          "availableForPVZ": false,
+          "deliveryItemMaxQuantity": 0
+        },
+        "shippingType": "PICKUP",
+        "quantity": 3
+      }
+    ],
+    "price": {
+      "profitBonusesChunks": [
+        {
+          "skuId": "G-130",
+          "count": 100
+        }
+      ],
+      "itemPrices": [
+        {
+          "skuId": "G-130",
+          "productId": "1719845",
+          "price": 2999,
+          "oldPrice": 2999,
+          "amount": 2999,
+          "oldAmount": 2999,
+          "number": "G-130"
+        }
+      ],
+      "clubproBonusesAmount": 0,
+      "deliveryAmount": 0,
+      "totalAmount": 2999,
+      "promoAmount": 0,
+      "oldAmount": 2999,
+      "amount": 2999
+    },
+    "useClubproBonuses": false,
+    "clubproBonusesCanBeUsed": true,
+    "shipping": {
+      "deliveryAvailable": false,
+      "freeShippingBarrier": null,
+      "freeShippingBarrierMGT": null,
+      "freeShippingBarrierKGT": null,
+      "pickupBonusesBarrier": 1000,
+      "pickupBonusesValue": 300,
+      "pickupBonusesEndDate": "31.08.2016",
+      "motivatorState": "PICKUP"
+    },
+    "currentCityLocation": {
+      "lon": 37.618423,
+      "lat": 55.751244
+    },
+    "currentCityId": "0c5b2444-70a0-4932-980c-b4dc0d3f02b5",
+    "version": 446,
+    "expressDeliveryAvailability": {
+      "available": true,
+      "partiallyAvailable": true,
+      "unavailabilityReason": null,
+      "setting": {
+        "cityId": "0c5b2444-70a0-4932-980c-b4dc0d3f02b5",
+        "timeFrom": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "timeTo": {
+          "hour": 23,
+          "minute": 59,
+          "second": 0,
+          "nano": 0
+        },
+        "deliveryThreshold": 100000,
+        "page": {
+          "deliveryCost": "300 рублей",
+          "deliveryTime": "сегодня"
+        },
+        "popup": {
+          "text1": "100% предоплата онлайн",
+          "text2": "Частичный выкуп и отказ при доставке временно невозможны",
+          "text3": "Доставим в часы работы магазина",
+          "text4": "Доставка осуществляется в пределах МКАД"
+        },
+        "deliveryCost": 300
+      },
+      "unavailabilitySkuIds": null
+    },
+    "basketId": "fjOTnPTVRzejgeSa8mvnWQ"
+  }
+  

@@ -1,0 +1,14 @@
+{
+    "name": "Тест",
+    "lastName": "Тестов",
+    "phone": "9990000001",
+    "email": "testovaya@pantera.ru",
+    "birthday": "1990-01-01",
+    "city": {
+      "name": "1720920299",
+      "displayText": "1720920299"
+    },
+    "gender": "male",
+    "emailSubscription": true,
+    "smsSubscription": true
+  }

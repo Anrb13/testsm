@@ -1,7 +1,6 @@
-const assert = require('assert').strict;
 const { elementClick } = require('../../utils');
 
-//Элементы хедера главной
+// Элементы хедера главной
 const searchApiUrl = 'https://m.sportmaster.ru/rest/v1/search?';
 const selectors = {
     new: {
@@ -20,12 +19,11 @@ const selectors = {
         searchIcon: 'header > div.td.head-icon.svg-icon',
         searchInput: '#searchGoods_value',
         closeSearchIcon: 'header > div.td.head-icon.svg-icon',
-        // clearSearchIcon: '',
-        // profileIcon: '',
         basketIcon: 'header > a.td.head-icon.svg-icon.relative',
     },
 };
 
+// Steps: взаимодействие с элементами хедера
 const burger = async (page, variant = 'new') => {
     const { burgerIcon } = selectors[variant];
     await elementClick(page, burgerIcon);
@@ -62,22 +60,22 @@ const basket = async (page, variant = 'new') => {
 };
 
 const searchInput = async (page, variant = 'new', searchRequest) => {
-    const { searchInput } = selectors[variant];
-    await page.fill(searchInput, searchRequest);
-    await page.press(searchInput, 'Enter');
-    await page.waitForResponse((res) => res.url().startsWith(searchApiUrl));
-    const searchResponse = await page.innerText('esm-search-tiles > div > div:nth-child(3)');
-    await expect(searchResponse).toContain(searchRequest);
+    const { searchInputSelector } = selectors[variant];
+    await page.fill(searchInputSelector, searchRequest);
+    await page.press(searchInputSelector, 'Enter');
+    // await page.waitForResponse((res) => res.url().startsWith(searchApiUrl));
+    // const searchResponse = await page.innerText('esm-search-tiles > div > div:nth-child(3)');
+    // await expect(searchResponse).toContain(searchRequest);
 };
 
 
 module.exports = {
-    burger,
-    smLogo,
-    search,
-    clearSearch,
+    burger, 
+    smLogo, 
+    search, 
+    clearSearch, 
     closeSearch,
-    profile,
-    basket,
+    profile, 
+    basket, 
     searchInput,
 };
