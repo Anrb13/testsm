@@ -1,23 +1,27 @@
 const {elementClick} = require('../../utils');
 
-//Страница с подкатегориями
-//div.breadcrumbs.clearfix крошки
-//div.clearfix > div:nth-child(1) > div > div.td.td-top.width-33pc.pdAll-5 > a
-//div.clearfix > div:nth-child(1) > div > div:nth-child(2) > h2 > a
-
-const breadcrumbs = async (page, n = 1) => {
+// Elements: cтраницы с подкатегориями
+const breadcrumbsSelectorBuilder = (n) => {
     const breadcrumbsSelector = 'div.breadcrumbs.clearfix > span:nth-child(' + n + ')';
-    await elementClick(page, breadcrumbsSelector);
-}
-
-//клик по подкатегории (n - порядковый номер, по умолчанию = 1)
-const chooseSubcategory = async (page, n = 1) => {
+    return breadcrumbsSelector;
+};
+const subCategorySelectorBuilder = (n) => {
     const subCategorySelector = 'div.clearfix > div:nth-child(' + n + ') >> a';
-    await elementClick(page, subCategorySelector);
+    return subCategorySelector;
+};
+
+// Steps: взимодействие с элементами
+const breadcrumbs = async (page, n = 1) => {
+    await elementClick(page, breadcrumbsSelector(n));
+};
+
+const chooseSubCategory = async (page, n = 1) => {
+    await elementClick(page, subCategorySelectorBuilder(n));
 };
 
 
 module.exports = {
     breadcrumbs,
-    chooseSubcategory,
+    chooseSubCategory,
+    breadcrumbsSelectorBuilder,
 };

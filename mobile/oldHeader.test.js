@@ -1,10 +1,10 @@
 const {chromium, devices} = require('playwright');
-const { mUrl } = require('../url');
+const { mUrl, } = require('../utils');
 const { cookieA1, cookieBanner, cookieCityConfirmed, } = require('../cookies');
-const { burger, smLogo, search, searchByRequest, basket, } = require('./pageObject/header');
+const { burger, smLogo, search, searchByRequest, basket, headerSelectors } = require('./pageObject/header');
     
 //Тесты на старый хедер
-describe('Old header tests', () => {
+describe('OLD header tests', () => {
     let browser;
     let context;
     let page;
@@ -32,12 +32,12 @@ describe('Old header tests', () => {
         await burger(page, 'old');
         await page.waitForSelector('text=/Каталог/');
         await burger(page, 'old');
-        await page.waitForSelector('header > div.td.bg-menu.head-icon');
+        await page.waitForSelector(headerSelectors.old.searchIcon);
     });
 
-    test('Search icon opens search input and close it, search work correctly', async () => {
+    test('Search icon opens input and close it, search work correctly', async () => {
         await search(page, 'old');
-        await page.waitForSelector('#searchGoods_value');
+        await page.waitForSelector(headerSelectors.old.searchInput);
         await searchByRequest(page, 'old', 'nike air');
         await search(page, 'old');
         //TODO: придумать проверку, что инпут закрыт

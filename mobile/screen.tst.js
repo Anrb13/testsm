@@ -1,5 +1,5 @@
 const { devices, } = require('playwright');
-const { mUrl, } = require('../url');
+const { mUrl, } = require('../utils');
 const { cookieA1, cookieA2, cookieBanner, cookieCityConfirmed, } = require('../cookies');
 const { suites, } = require('../suites');
 const { getTime, } = require('../utils');

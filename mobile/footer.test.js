@@ -1,5 +1,5 @@
 const { devices, chromium } = require('playwright');
-const { mUrl, } = require('../url');
+const { mUrl, } = require('../utils');
 const { cookieBanner, cookieCityConfirmed } = require('../cookies');
 const { sectionService, profileFooter, deliveryFooter, exchangeFooter, serviceFooter,
     warrantyFooter, reviewFooter, legalPersonFooter, sectionInfo, aboutCompanyFooter, 
@@ -213,6 +213,7 @@ describe('Footer tests', () => {
 
     test('Full Version Link redirect to "sportmaster.ru/?nomobile=1"', async () => {
         await fullVersionFooter(page);
+        await page.waitForSelector('text=/Мобильная версия/');
         await expect(page.url()).toContain('nomobile=1');
     });
 
