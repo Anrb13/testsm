@@ -1,5 +1,4 @@
-const {chromium, devices, webkit} = require('playwright');
-const { mUrl, } = require('../utils');
+const { mUrl, engine, launchOptions, contextOptions } = require('../utils');
 const { cookieA2, cookieBanner, cookieCityConfirmed, cookieUniverse, } = require('../cookies');
 const { burger, smLogo, search, searchByRequest, clearSearch, 
         closeSearch, profile, basket, headerSelectors, } = require('./pageObject/header');
@@ -11,8 +10,8 @@ describe('NEW header tests', () => {
     let page;
 
     beforeAll( async () => {
-        browser = await chromium.launch({ headless: true });
-        context = await browser.newContext({ ...devices['iPhone 8'], deviceScaleFactor: 1, });
+        browser = await engine.launch(launchOptions);
+        context = await browser.newContext(contextOptions);
         await context.addCookies([ cookieCityConfirmed, cookieA2, cookieBanner ]);
     });
 

@@ -1,7 +1,7 @@
 const {elementClick} = require('../../utils');
 
 // Модальное окно выбора города
-const selectors = {
+const confirmCityModalSelectors = {
     new: {
         okButton: '.esm-modal-btn_agreed',
         cancelButton: '.close',
@@ -14,17 +14,17 @@ const selectors = {
 };
 
 const confirmCity = async (page, variant = 'new') => {
-    const { okButton } = selectors[variant];
+    const { okButton } = confirmCityModalSelectors[variant];
     elementClick(page, okButton);
 };
 
 const cancelCity = async (page, variant = 'new') => {
-    const { cancelButton } = selectors[variant];
+    const { cancelButton } = confirmCityModalSelectors[variant];
     elementClick(page, cancelButton);
 };
 
 const anotherCity = async (page, variant = 'new') => {
-    const { anotherButton } = selectors[variant];
+    const { anotherButton } = confirmCityModalSelectors[variant];
     elementClick(page, anotherButton);
 };
 

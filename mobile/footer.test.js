@@ -1,5 +1,4 @@
-const { devices, chromium } = require('playwright');
-const { mUrl, } = require('../utils');
+const { mUrl, engine, contextOptions, launchOptions } = require('../utils');
 const { cookieBanner, cookieCityConfirmed } = require('../cookies');
 const { sectionService, profileFooter, deliveryFooter, exchangeFooter, serviceFooter,
     warrantyFooter, reviewFooter, legalPersonFooter, sectionInfo, aboutCompanyFooter, 
@@ -16,8 +15,8 @@ describe('Footer tests', () => {
     let page;
 
     beforeAll( async () => {
-        browser = await chromium.launch({ headless: true, });
-        context = await browser.newContext({ ...devices['iPhone 8'] });
+        browser = await engine.launch(launchOptions);
+        context = await browser.newContext(contextOptions);
         await context.addCookies([ cookieBanner, cookieCityConfirmed ]);
     });
 

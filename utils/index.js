@@ -1,5 +1,11 @@
+const {chromium, webkit, devices} = require('playwright');
+
 const baseUrl = 'https://www.sportmaster.ru';
 const mUrl = 'https://m.sportmaster.ru';
+
+const engine = chromium;
+const launchOptions = { headless: true, };
+const contextOptions = { ...devices['Pixel 2 XL'], deviceScaleFactor: 1, };
 
 const getTime = () => {
     const isoDate = (new Date()).toISOString();
@@ -14,9 +20,9 @@ const elementClick = async (page, selector) => {
     } catch (err) {
         console.error(err);
         console.error('Ошибка клика по селектору ' + selector);
-        // await page.screenshot({
-        //     path: `mobile/errors/cant_click_element_${time}.jpeg`
-        // });
+        await page.screenshot({
+            path: `errors/cant_click_element_${time}.jpeg`
+        });
     };
 };
 
@@ -26,4 +32,7 @@ module.exports = {
     getTime,
     baseUrl,
     mUrl,
+    engine,
+    contextOptions,
+    launchOptions,
 };
