@@ -6,12 +6,12 @@ const downloadLinkMobileAppCommercSelector = 'promoplate-android-banner__load-li
 
 // Element: Карусель брендов
 const brandSelectorBuilder = (n) => {
-    const brandSelector = 'esm-main-page-brands >> div:nth-child(' + n + ')';
+    const brandSelector = 'esm-main-page-brands >> div:nth-child(' + n + ') > img';
     return brandSelector;
 };
 const allBrandsSelector = 'esm-main-page-brands >> a';
 
-// Element: Табы каталога по полу/возрасту
+// Element: Табы каталога (по полу/возрасту + обувь)
 const genderLinksSelectorBuilder = (n) => {
     const genderLinksSelector = 'esm-main-page-gender-links >> a:nth-child(' + n + ')';
     return genderLinksSelector;
@@ -34,7 +34,7 @@ const footerMenuLinkSelectorBuilder = (n, m) => {
     return FooterMenuLinkSelector;
 };
 
-// Steps:
+// Actions:
 const closeMobileAppCommerc = async (page) => {
     await elementClick(page, closeMobileAppCommercSelector);
 };
@@ -43,7 +43,7 @@ const downloadLinkMobileAppCommerc = async (page) => {
     await elementClick(page, downloadLinkMobileAppCommercSelector);
 };
 
-const brandMain = async (page, n = 1) => {
+const brandMain = async (page, n) => {
     await elementClick(page, brandSelectorBuilder(n));
 };
 
@@ -72,9 +72,7 @@ const footerMenuLinkMain = async (page, n = 1, m = 1) => {
 };
 
 module.exports = {
-    closeMobileAppCommerc, downloadLinkMobileAppCommerc,
-    brandMain, allBrandsMain,
-    genderMain, sportMain,
-    allSportsMain, footerMenuSectionMain,
-    footerMenuLinkMain,
+    closeMobileAppCommerc, downloadLinkMobileAppCommerc, brandMain, 
+    allBrandsMain, genderMain, sportMain,
+    allSportsMain, footerMenuSectionMain, footerMenuLinkMain,
 };

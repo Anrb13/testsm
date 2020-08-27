@@ -4,7 +4,7 @@ const { burger, smLogo, search, searchByRequest, clearSearch,
         closeSearch, profile, basket, headerSelectors, } = require('./pageObject/header');
 
 //Тесты на новый хедер (кука A2)
-describe('NEW header tests', () => {
+describe.skip('NEW header tests', () => {
     let browser;
     let context;
     let page;
