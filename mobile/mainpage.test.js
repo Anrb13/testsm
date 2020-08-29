@@ -1,6 +1,6 @@
 const { mUrl, engine, launchOptions, contextOptions } = require('../utils');
 const { cookieBanner, cookieCityConfirmed, } = require('../cookies');
-const { breadcrumbsSelectorBuilder } = require('./pageObject/catalog')
+const { pageBreadcrumbsText } = require('./pageObject/catalog')
 const { closeMobileAppCommerc, downloadLinkMobileAppCommerc, brandMain, 
         allBrandsMain, genderMain, sportMain, allSportsMain, 
         footerMenuSectionMain, footerMenuLinkMain, } = require('./pageObject/mainpage');
@@ -35,14 +35,13 @@ describe('MainPage tests', () => {
 
     test('First brand on carousel clickable and correctly redirect', async () => {
         await brandMain(page, 1);
-        // const pageBread = await page.textContent(breadcrumbsSelectorBuilder(1));
-        await expect(await page.textContent(breadcrumbsSelectorBuilder(1))).toBe('Бренды');
+        await expect(await pageBreadcrumbsText(page, 1)).toBe('Бренды');
         await expect(page.url()).toContain('catalog/brendy');
     });
 
     test('Third brand on carousel clickable and correctly redirect', async () => {
         await brandMain(page, 3);
-        await expect(await page.textContent(breadcrumbsSelectorBuilder(1))).toBe('Бренды');
+        await expect(await pageBreadcrumbsText(page, 1)).toBe('Бренды');
         await expect(page.url()).toContain('catalog/brendy');
     });
 
