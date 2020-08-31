@@ -6,32 +6,27 @@ const downloadLinkMobileAppCommercSelector = 'promoplate-android-banner__load-li
 
 // Element: Карусель брендов
 const brandSelectorBuilder = (n) => {
-    const brandSelector = 'esm-main-page-brands >> div:nth-child(' + n + ') > img';
-    return brandSelector;
+    return 'esm-main-page-brands >> div:nth-child(' + n + ') > img';
 };
 const allBrandsSelector = 'esm-main-page-brands >> a';
 
 // Element: Табы каталога (по полу/возрасту + обувь)
 const genderLinksSelectorBuilder = (n) => {
-    const genderLinksSelector = 'esm-main-page-gender-links >> a:nth-child(' + n + ')';
-    return genderLinksSelector;
+    return 'esm-main-page-gender-links >> a:nth-child(' + n + ')';
 };
 
 // Element: Карусель видов спорта
 const sportSelectorBuilder = (n) => {
-    const sportSelector = 'esm-main-page-sport-types >> div:nth-child(' + n + ')';
-    return sportSelector;
+    return 'esm-main-page-sport-types >> div:nth-child(' + n + ')';
 };
 const allSportsSelector = 'esm-main-page-sport-types >> a';
 
 // Element: Футер-меню
 const footerMenuSectionSelectorBuilder = (n) => {
-    const FooterMenuSectionSelector = 'div.main-page__footer__menu > div:nth-child(' + n + ')';
-    return FooterMenuSectionSelector;
+    return 'div.main-page__footer__menu > div:nth-child(' + n + ')';
 };
 const footerMenuLinkSelectorBuilder = (n, m) => {
-    const FooterMenuLinkSelector = 'div.main-page__footer__menu > div:nth-child(' + n + ') >> a:nth-child(' + m + ')';
-    return FooterMenuLinkSelector;
+    return 'div.main-page__footer__menu > div:nth-child(' + n + ') >> a:nth-child(' + m + ')';
 };
 
 // Actions:

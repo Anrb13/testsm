@@ -26,19 +26,13 @@ const oferta = 'div.layout-footer__copyright > a:nth-child(3)';
 //Билдер для селекторов футера
 const parentSelector = ' > div.layout-footer__menu__section__items-container > ';
 const sectionBuilder = (a) => {
-    const sectionSelector = 'div.layout-footer__menu > div:nth-child(';
-    let section = sectionSelector + a + ')';
-    return section;
+    return 'div.layout-footer__menu > div:nth-child(' + a + ')';
 };
-const selectorBuilder = (b, c) => {
-    const linkSelector = parentSelector + 'a:nth-child(';
-    let link = sectionBuilder(b) + linkSelector + c + ')';
-    return link;
+const selectorBuilder = (a, b) => {
+    return sectionBuilder(a) + parentSelector + 'a:nth-child(' + b + ')';
 };
-const socialBuilder = (d) => {
-    const socialSelector = parentSelector + 'div.layout-footer__image-container > a:nth-child(';
-    let social = sectionBuilder(3) + socialSelector + d + ')';
-    return social;
+const socialBuilder = (a) => {
+    return sectionBuilder(3) + parentSelector + 'div.layout-footer__image-container > a:nth-child(' + a + ')';
 };
 
 
@@ -115,16 +109,17 @@ const numberFooter = async (page) => {
     const regionFooter = await page.innerText(region);
     if (regionFooter === 'Москва') {
         let myNumber = await page.innerText(selectorBuilder(3, 2));
-        assert(myNumber === '8 495 777-777-1')
+        expect(myNumber).toBo('8 495 777-777-1');
     } else if (regionFooter === 'Санкт-Петербург') {
         let myNumber = await page.innerText(selectorBuilder(3, 2));
-        assert(myNumber === ' 8 812 777-777-1')
+        expect(myNumber).toBe(' 8 812 777-777-1');
     } else {
         let myNumber = await page.innerText(selectorBuilder(3, 2));
-        assert(myNumber === '8 800 777-777-1')
+        expect(myNumber).toBe('8 800 777-777-1');
     };
     await elementClick(page, selectorBuilder(3, 2));
 };
+
 const emailFooter = async (page) => {
     await elementClick(page, selectorBuilder(3, 4));
 };
