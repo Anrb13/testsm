@@ -1,12 +1,12 @@
 const { mUrl, engine, contextOptions, launchOptions } = require('../utils');
 const { cookieBanner, cookieCityConfirmed, cookieA1, } = require('../cookies');
-const { burger } = require('./pageObject/header');
-const { breadcrumbsSelectorBuilder } = require('./pageObject/catalog');
+const { burger } = require('./pages/header');
+const { breadcrumbsSelectorBuilder } = require('./pages/catalog');
 const { chooseCity, loginButton, registerButton, catalog, catalogBack,
         category, shopsLocation, proSection, clubPro, giftCard,
         payAndDelivery, legalPerson, serviceSection, newsSection, contactsSection,
         privacySection, ofertaSection, jobLink, categorySelectorBuilder 
-} = require('./pageObject/oldSidebar');
+} = require('./pages/oldSidebar');
 
 
 describe('OLD sidebar tests', () => {

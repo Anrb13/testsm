@@ -7,7 +7,7 @@ const { sectionService, profileFooter, deliveryFooter, exchangeFooter, serviceFo
     numberFooter, emailFooter, corpLinkFooter, facebookFooter, vkontakteFooter, 
     odnoklassnikiFooter, instagramFooter, youtubeFooter, eGiftcardFooter, clubCardFooter, 
     yandexMarketFooter, androidAppFooter, iosAppFooter, fullVersionFooter, privacyFooter,
-    ofertaFooter, } = require('./pageObject/footer');
+    ofertaFooter, } = require('./pages/footer');
 
 describe('Footer tests', () => {
     let browser;

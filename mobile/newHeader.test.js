@@ -1,7 +1,7 @@
 const { mUrl, engine, launchOptions, contextOptions } = require('../utils');
 const { cookieA2, cookieBanner, cookieCityConfirmed, cookieUniverse, } = require('../cookies');
 const { burger, smLogo, search, searchByRequest, clearSearch, 
-        closeSearch, profile, basket, headerSelectors, } = require('./pageObject/header');
+        closeSearch, profile, basket, headerSelectors, } = require('./pages/header');
 
 //Тесты на новый хедер (кука A2)
 describe.skip('NEW header tests', () => {

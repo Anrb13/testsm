@@ -1,6 +1,6 @@
 const { mUrl, engine, contextOptions, launchOptions } = require('../utils');
 const { cookieA1, cookieBanner, cookieCityConfirmed, } = require('../cookies');
-const { burger, smLogo, search, searchByRequest, basket, headerSelectors } = require('./pageObject/header');
+const { burger, smLogo, search, searchByRequest, basket, headerSelectors } = require('./pages/header');
     
 //Тесты на старый хедер
 describe('OLD header tests', () => {

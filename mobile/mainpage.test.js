@@ -1,9 +1,9 @@
 const { mUrl, engine, launchOptions, contextOptions } = require('../utils');
 const { cookieBanner, cookieCityConfirmed, } = require('../cookies');
-const { breadcrumbsSelectorBuilder } = require('./pageObject/catalog')
+const { breadcrumbsSelectorBuilder } = require('./pages/catalog')
 const { closeMobileAppCommerc, downloadLinkMobileAppCommerc, brandMain, 
         allBrandsMain, genderMain, sportMain, allSportsMain, 
-        footerMenuSectionMain, footerMenuLinkMain, } = require('./pageObject/mainpage');
+        footerMenuSectionMain, footerMenuLinkMain, } = require('./pages/mainpage');
 
 describe.skip('Fullscreen banner and ', () => {
     
