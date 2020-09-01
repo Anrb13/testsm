@@ -11,7 +11,7 @@ const brandSelectorBuilder = (n) => {
 const allBrandsSelector = 'esm-main-page-brands >> a';
 
 // Element: Табы каталога (по полу/возрасту + обувь)
-const genderLinksSelectorBuilder = (n) => {
+const catalogTabsSelectorBuilder = (n) => {
     return 'esm-main-page-gender-links >> a:nth-child(' + n + ')';
 };
 
@@ -46,8 +46,8 @@ const allBrandsMain = async (page) => {
     await elementClick(page, allBrandsSelector);
 };
 
-const genderMain = async (page, n = 1) => {
-    await elementClick(page, genderLinksSelectorBuilder(n));
+const catalogTabsMain = async (page, n = 1) => {
+    await elementClick(page, catalogTabsSelectorBuilder(n));
 };
 
 const sportMain = async (page, n = 1) => {
@@ -68,6 +68,6 @@ const footerMenuLinkMain = async (page, n = 1, m = 1) => {
 
 module.exports = {
     closeMobileAppCommerc, downloadLinkMobileAppCommerc, brandMain, 
-    allBrandsMain, genderMain, sportMain,
+    allBrandsMain, catalogTabsMain, sportMain,
     allSportsMain, footerMenuSectionMain, footerMenuLinkMain,
 };

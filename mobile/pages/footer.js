@@ -109,7 +109,7 @@ const numberFooter = async (page) => {
     const regionFooter = await page.innerText(region);
     if (regionFooter === 'Москва') {
         let myNumber = await page.innerText(selectorBuilder(3, 2));
-        expect(myNumber).toBo('8 495 777-777-1');
+        expect(myNumber).toBe('8 495 777-777-1');
     } else if (regionFooter === 'Санкт-Петербург') {
         let myNumber = await page.innerText(selectorBuilder(3, 2));
         expect(myNumber).toBe(' 8 812 777-777-1');

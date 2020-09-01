@@ -4,7 +4,7 @@ const baseUrl = 'https://www.sportmaster.ru';
 const mUrl = 'https://m.sportmaster.ru';
 
 const engine = chromium;
-const launchOptions = { headless: false, slowMo: 200 };
+const launchOptions = { headless: true, /*slowMo: 100*/ };
 const contextOptions = { ...devices['Pixel 2 XL'], deviceScaleFactor: 1, };
 
 const getTime = () => {
@@ -20,9 +20,6 @@ const elementClick = async (page, selector) => {
     } catch (err) {
         console.error(err);
         console.error('Ошибка клика по селектору ' + selector);
-        await page.screenshot({
-            path: `../mobile/screenshots/errors/cant_click_element_${time}.jpeg`
-        });
     };
 };
 
