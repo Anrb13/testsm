@@ -17,7 +17,7 @@ const catalogTabsSelectorBuilder = (n) => {
 
 // Element: Карусель видов спорта
 const sportSelectorBuilder = (n) => {
-    return 'esm-main-page-sport-types >> div:nth-child(' + n + ')';
+    return 'esm-main-page-sport-types >> div.main-page__sport-types__item:nth-child(' + n + ')';
 };
 const allSportsSelector = 'esm-main-page-sport-types >> a';
 
@@ -51,7 +51,11 @@ const catalogTabsMain = async (page, n = 1) => {
 };
 
 const sportMain = async (page, n = 1) => {
-    await elementClick(page, sportSelectorBuilder(n));
+    await elementClick(page, (sportSelectorBuilder(n) + ' > img'));
+};
+
+const nameOfSportMain = async (page, n = 1) => {
+    return await page.textContent(sportSelectorBuilder(n));
 };
 
 const allSportsMain = async (page) => {
@@ -68,6 +72,6 @@ const footerMenuLinkMain = async (page, n = 1, m = 1) => {
 
 module.exports = {
     closeMobileAppCommerc, downloadLinkMobileAppCommerc, brandMain, 
-    allBrandsMain, catalogTabsMain, sportMain,
+    allBrandsMain, catalogTabsMain, sportMain, nameOfSportMain,
     allSportsMain, footerMenuSectionMain, footerMenuLinkMain,
 };

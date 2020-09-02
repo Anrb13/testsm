@@ -2,7 +2,7 @@ const { mUrl, engine, launchOptions, contextOptions } = require('../utils');
 const { cookieBanner, cookieCityConfirmed, } = require('../cookies');
 const { catalogBreadcrumbsText } = require('./pages/catalog')
 const { closeMobileAppCommerc, downloadLinkMobileAppCommerc, brandMain, 
-        allBrandsMain, catalogTabsMain, sportMain, allSportsMain, 
+        allBrandsMain, catalogTabsMain, sportMain, nameOfSportMain,  allSportsMain, 
         footerMenuSectionMain, footerMenuLinkMain, } = require('./pages/mainpage');
 
 describe.skip('Fullscreen banner and ', () => {
@@ -97,5 +97,59 @@ describe('MainPage tests', () => {
         await catalogTabsMain(page, 8);
         await expect(await catalogBreadcrumbsText(page)).toBe('Обувь для девочек');
         await expect(page.url()).toContain('catalog/obuv_dlya_devochek');
+    });
+
+    test('Sports.Running icon correctly redirect to catalog page', async () => {
+        const nameOfSport = await nameOfSportMain(page, 1);
+        await sportMain(page, 1);
+        await expect(' ' + await catalogBreadcrumbsText(page, 2)).toBe(nameOfSport);
+        await expect(page.url()).toContain('vidy_sporta_/beg');
+    });
+    
+    test('Sports.Fitness icon correctly redirect to catalog page', async () => {
+        await sportMain(page, 2);
+        await expect(await catalogBreadcrumbsText(page, 1)).toBe('Тренажёры и фитнес');
+        await expect(page.url()).toContain('catalog/trenazhery_i_fitnes_');
+    });
+
+    test('Sports.Boxing icon correctly redirect to catalog page', async () => {
+        const nameOfSport = await nameOfSportMain(page, 3);
+        await sportMain(page, 3);
+        await expect(' ' + await catalogBreadcrumbsText(page, 2)).toBe(nameOfSport);
+        await expect(page.url()).toContain('vidy_sporta_/boks');
+    });
+
+    test('Sports.Swimming icon correctly redirect to catalog page', async () => {
+        const nameOfSport = await nameOfSportMain(page, 4);
+        await sportMain(page, 4);
+        await expect(' ' + await catalogBreadcrumbsText(page, 2)).toBe(nameOfSport);
+        await expect(page.url()).toContain('vidy_sporta_/plavanie');
+    });
+    
+    test('Sports.Tennis icon correctly redirect to catalog page', async () => {
+        const nameOfSport = await nameOfSportMain(page, 5);
+        await sportMain(page, 5);
+        await expect(' ' + await catalogBreadcrumbsText(page, 2)).toBe(nameOfSport);
+        await expect(page.url()).toContain('vidy_sporta_/tennis');
+    });
+
+    test('Sports.Football icon correctly redirect to catalog page', async () => {
+        const nameOfSport = await nameOfSportMain(page, 6);
+        await sportMain(page, 6);
+        await expect(' ' + await catalogBreadcrumbsText(page, 2)).toBe(nameOfSport);
+        await expect(page.url()).toContain('vidy_sporta_/futbol');
+    });
+
+    test('Sports.Velosport icon correctly redirect to catalog page', async () => {
+        const nameOfSport = await nameOfSportMain(page, 7);
+        await sportMain(page, 7);
+        await expect(' ' + await catalogBreadcrumbsText(page, 2)).toBe(nameOfSport);
+        await expect(page.url()).toContain('vidy_sporta_/velosport');
+    });
+
+    test('ALL Sports icon correctly redirect to catalog page', async () => {
+        await allSportsMain(page);
+        await expect(await catalogBreadcrumbsText(page, 1)).toBe('Виды спорта');
+        await expect(page.url()).toContain('vidy_sporta_');
     });
 });
