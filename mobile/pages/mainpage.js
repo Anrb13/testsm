@@ -1,8 +1,9 @@
-const { elementClick } = require('../../utils');
-
 // Element: Плашка для скачивания мобильного приложения
 const closeMobileAppCommercSelector = 'span[class="smicon-close-narrow clr-gray"]';
 const downloadLinkMobileAppCommercSelector = 'promoplate-android-banner__load-link';
+
+// Element: Баннер
+const bannerMainpageSelector = 'div.main-page__carousel__image > img';
 
 // Element: Карусель брендов
 const brandSelectorBuilder = (n) => {
@@ -11,6 +12,7 @@ const brandSelectorBuilder = (n) => {
 const allBrandsSelector = 'esm-main-page-brands >> a';
 
 // Element: Табы каталога (по полу/возрасту + обувь)
+const allCatalogTabsSelector = 'div.main-page__gender-links';
 const catalogTabsSelectorBuilder = (n) => {
     return 'esm-main-page-gender-links >> a:nth-child(' + n + ')';
 };
@@ -29,49 +31,11 @@ const footerMenuLinkSelectorBuilder = (n, m) => {
     return 'div.main-page__footer__menu > div:nth-child(' + n + ') >> a:nth-child(' + m + ')';
 };
 
-// Actions:
-const closeMobileAppCommerc = async (page) => {
-    await elementClick(page, closeMobileAppCommercSelector);
-};
-
-const downloadLinkMobileAppCommerc = async (page) => {
-    await elementClick(page, downloadLinkMobileAppCommercSelector);
-};
-
-const brandMain = async (page, n) => {
-    await elementClick(page, brandSelectorBuilder(n));
-};
-
-const allBrandsMain = async (page) => {
-    await elementClick(page, allBrandsSelector);
-};
-
-const catalogTabsMain = async (page, n = 1) => {
-    await elementClick(page, catalogTabsSelectorBuilder(n));
-};
-
-const sportMain = async (page, n = 1) => {
-    await elementClick(page, (sportSelectorBuilder(n) + ' > img'));
-};
-
-const nameOfSportMain = async (page, n = 1) => {
-    return await page.textContent(sportSelectorBuilder(n));
-};
-
-const allSportsMain = async (page) => {
-    await elementClick(page, allSportsSelector);
-};
-
-const footerMenuSectionMain = async (page, n = 1) => {
-    await elementClick(page, footerMenuSectionSelectorBuilder(n));
-};
-
-const footerMenuLinkMain = async (page, n = 1, m = 1) => {
-    await elementClick(page, footerMenuLinkSelectorBuilder(n, m));
-};
 
 module.exports = {
-    closeMobileAppCommerc, downloadLinkMobileAppCommerc, brandMain, 
-    allBrandsMain, catalogTabsMain, sportMain, nameOfSportMain,
-    allSportsMain, footerMenuSectionMain, footerMenuLinkMain,
+    closeMobileAppCommercSelector, downloadLinkMobileAppCommercSelector, 
+    bannerMainpageSelector, brandSelectorBuilder, allBrandsSelector,
+    catalogTabsSelectorBuilder, sportSelectorBuilder,allSportsSelector, 
+    footerMenuSectionSelectorBuilder, footerMenuLinkSelectorBuilder,
+    allCatalogTabsSelector,
 };
