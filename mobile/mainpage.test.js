@@ -157,8 +157,23 @@ describe('MainPage tests', () => {
     //     await expect(page.url()).toContain('vidy_sporta_');
     // });
 
-    test('should ', async () => {
+    for(let n of sections) {
+        for(let m of sections) {
+
+        }
+    }
+
+    test('Footer menu link correctly redirect to catalog page', async (n, m) => {
+        await footerMenuSectionMain(page, n);
+        const expectedText = await footerMenuLinkText(page, n, m);
+        await footerMenuLinkMain(page, n, m);
+        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 1));
+    });
+
+    test('Footer menu link correctly redirect to catalog page', async () => {
         await footerMenuSectionMain(page, 1);
-        console.log(await footerMenuLinkText(page, 1, 1));
+        const expectedText = await footerMenuLinkText(page, 1, 1);
+        await footerMenuLinkMain(page, 1, 1);
+        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 1));
     });
 });

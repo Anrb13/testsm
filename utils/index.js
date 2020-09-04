@@ -6,7 +6,7 @@ const mUrl = 'https://m.sportmaster.ru';
 const engine = chromium;
 const launchOptions = {
     headless: false,
-    slowMo: 100,
+    slowMo: 300,
 };
 const contextOptions = { 
     ...devices['Pixel 2 XL'],
