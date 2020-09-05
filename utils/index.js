@@ -9,7 +9,7 @@ const launchOptions = {
     // slowMo: 150,
 };
 const contextOptions = { 
-    ...devices['Pixel 2 XL'],
+    ...devices['iPhone X'],
 }
 
 const getTime = () => {
