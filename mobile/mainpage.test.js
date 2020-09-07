@@ -1,17 +1,11 @@
 const { mUrl, engine, launchOptions, contextOptions } = require('../utils');
 const { cookieBanner, cookieCityConfirmed, } = require('../cookies');
-const { catalogBreadcrumbsText } = require('./pages/catalog')
-const { allCatalogTabsSelector, footerMenuLinkSelectorBuilder } = require('./pages/mainpage');
-const { closeMobileAppCommerc, downloadLinkMobileAppCommerc, brandMain, 
-        allBrandsMain, catalogTabsMain, sportMain, nameOfSportMain, 
-        allSportsMain, footerMenuSectionMain, footerMenuLinkMain, 
-        bannerMainSwipe, footerMenuLinkText } = require('./actions/mainpage')
+const { catalogBreadcrumbsText, } = require('./pages/catalog');
+const { brandMain, allBrandsMain, catalogTabsMain, sportMain, nameOfSportMain,
+        allSportsMain, footerMenuSectionMain, footerMenuLinkMain, footerMenuLinkText,
+    } = require('./actions/mainpage.action');
 
-describe.skip('Fullscreen banner and ', () => {
-    
-});
-
-describe('MainPage tests', () => {
+describe('Main Page tests', () => {
     let browser;
     let context;
     let page;
@@ -35,120 +29,54 @@ describe('MainPage tests', () => {
         await browser.close();
     });
 
-    test('First brand on carousel clickable and correctly redirect', async () => {
-        await brandMain(page, 1);
-        await expect(await catalogBreadcrumbsText(page, 1)).toBe('Бренды');
+    test.each(
+        [1, 2, 3, 4, 5, 6, 7]
+    )('Brands: %i icon clickable and correctly redirect', async(n) => {
+        if (n === 7) {
+            await allBrandsMain(page);
+            await page.waitForSelector('text=/Поиск по брендам/');
+        } else {
+            await brandMain(page, n);
+            await expect(await catalogBreadcrumbsText(page, 1)).toBe('Бренды');
+        }
         await expect(page.url()).toContain('catalog/brendy');
     });
 
-    test('Third brand on carousel clickable and correctly redirect', async () => {
-        await brandMain(page, 3);
-        await expect(await catalogBreadcrumbsText(page, 1)).toBe('Бренды');
-        await expect(page.url()).toContain('catalog/brendy');
+    test.each`
+        tabNumber | categoryName         | expectedText              | urlContain
+        ${1}      | ${'Womens wear'}     | ${'Женская одежда'}       | ${'catalog/zhenskaya_odezhda'}
+        ${2}      | ${'Womens footwear'} | ${'Женская обувь'}        | ${'catalog/zhenskaya_obuv'}
+        ${3}      | ${'Mens wear'}       | ${'Мужская одежда'}       | ${'catalog/muzhskaya_odezhda'}
+        ${4}      | ${'Mens footwear'}   | ${'Мужская обувь'}        | ${'catalog/muzhskaya_obuv'}
+        ${5}      | ${'Boys wear'}       | ${'Одежда для мальчиков'} | ${'catalog/odezhda_dlya_malchikov'}
+        ${6}      | ${'Boys footwear'}   | ${'Обувь для мальчиков'}  | ${'catalog/obuv_dlya_malchikov'}
+        ${7}      | ${'Girls wear'}      | ${'Одежда для девочек'}   | ${'catalog/odezhda_dlya_devochek'}
+        ${8}      | ${'Girls footwear'}  | ${'Обувь для девочек'}    | ${'catalog/obuv_dlya_devochek'}
+    `('$categoryName tab should correctly redirect to $url and contain $expectedText', 
+    async ({tabNumber, expectedText, urlContain}) => {
+        await catalogTabsMain(page, tabNumber);
+        await expect(await catalogBreadcrumbsText(page, 1)).toBe(expectedText);
+        await expect(page.url()).toContain(urlContain);
     });
 
-    test('All brands button on carousel clickable and correctly redirect', async () => {
-        await allBrandsMain(page);
-        await page.waitForSelector('text=/Поиск по брендам/');
-        await expect(page.url()).toContain('catalog/brendy');
-    });
-
-    test('Womens wear tab clickable and correctly redirect to catalog page', async () => {
-        await catalogTabsMain(page, 1);
-        await expect(await catalogBreadcrumbsText(page)).toBe('Женская одежда');
-        await expect(page.url()).toContain('catalog/zhenskaya_odezhda');
-    });
-
-    test('Womens footwear tab clickable and correctly redirect to catalog page', async () => {
-        await page.hover(allCatalogTabsSelector);
-        await catalogTabsMain(page, 2);
-        await expect(await catalogBreadcrumbsText(page)).toBe('Женская обувь');
-        await expect(page.url()).toContain('catalog/zhenskaya_obuv');
-    }); // ToDo: выпилить шерлок со страницы при этом тесте (или вообще во всех тестах)
-
-    test('Mens wear tab clickable and correctly redirect to catalog page', async () => {
-        await catalogTabsMain(page, 3);
-        await expect(await catalogBreadcrumbsText(page)).toBe('Мужская одежда');
-        await expect(page.url()).toContain('catalog/muzhskaya_odezhda');
-    });
-
-    test('Mens footwear tab clickable and correctly redirect to catalog page', async () => {
-        await page.hover(allCatalogTabsSelector);
-        await catalogTabsMain(page, 4);
-        await expect(await catalogBreadcrumbsText(page)).toBe('Мужская обувь');
-        await expect(page.url()).toContain('catalog/muzhskaya_obuv');
-    });
-
-    test('Boys wear tab clickable and correctly redirect to catalog page', async () => {
-        await catalogTabsMain(page, 5);
-        await expect(await catalogBreadcrumbsText(page)).toBe('Одежда для мальчиков');
-        await expect(page.url()).toContain('catalog/odezhda_dlya_malchikov');
-    });
-
-    test('Boys footwear tab clickable and correctly redirect to catalog page', async () => {
-        await catalogTabsMain(page, 6);
-        await expect(await catalogBreadcrumbsText(page)).toBe('Обувь для мальчиков');
-        await expect(page.url()).toContain('catalog/obuv_dlya_malchikov');
-    });
-
-    test('Girls wear tab clickable and correctly redirect to catalog page', async () => {
-        await catalogTabsMain(page, 7);
-        await expect(await catalogBreadcrumbsText(page)).toBe('Одежда для девочек');
-        await expect(page.url()).toContain('catalog/odezhda_dlya_devochek');
-    });
-
-    test('Girls footwear tab clickable and correctly redirect to catalog page', async () => {
-        await catalogTabsMain(page, 8);
-        await expect(await catalogBreadcrumbsText(page)).toBe('Обувь для девочек');
-        await expect(page.url()).toContain('catalog/obuv_dlya_devochek');
-    });
-
-    test('Sports.Running icon correctly redirect to catalog page', async () => {
-        const nameOfSport = await nameOfSportMain(page, 1);
-        await sportMain(page, 1);
-        await expect(' ' + await catalogBreadcrumbsText(page, 2)).toBe(nameOfSport);
-        await expect(page.url()).toContain('vidy_sporta_/beg');
-    });
-    
-    test('Sports.Fitness icon correctly redirect to catalog page', async () => {
-        await sportMain(page, 2);
-        await expect(await catalogBreadcrumbsText(page, 1)).toBe('Тренажёры и фитнес');
-        await expect(page.url()).toContain('catalog/trenazhery_i_fitnes_');
-    });
-
-    test('Sports.Boxing icon correctly redirect to catalog page', async () => {
-        const nameOfSport = await nameOfSportMain(page, 3);
-        await sportMain(page, 3);
-        await expect(' ' + await catalogBreadcrumbsText(page, 2)).toBe(nameOfSport);
-        await expect(page.url()).toContain('vidy_sporta_/boks');
-    });
-
-    test('Sports.Swimming icon correctly redirect to catalog page', async () => {
-        const nameOfSport = await nameOfSportMain(page, 4);
-        await sportMain(page, 4);
-        await expect(' ' + await catalogBreadcrumbsText(page, 2)).toBe(nameOfSport);
-        await expect(page.url()).toContain('vidy_sporta_/plavanie');
-    });
-    
-    test('Sports.Tennis icon correctly redirect to catalog page', async () => {
-        const nameOfSport = await nameOfSportMain(page, 5);
-        await sportMain(page, 5);
-        await expect(' ' + await catalogBreadcrumbsText(page, 2)).toBe(nameOfSport);
-        await expect(page.url()).toContain('vidy_sporta_/tennis');
-    });
-
-    test('Sports.Football icon correctly redirect to catalog page', async () => {
-        const nameOfSport = await nameOfSportMain(page, 6);
-        await sportMain(page, 6);
-        await expect(' ' + await catalogBreadcrumbsText(page, 2)).toBe(nameOfSport);
-        await expect(page.url()).toContain('vidy_sporta_/futbol');
-    });
-
-    test('Sports.Velosport icon correctly redirect to catalog page', async () => {
-        const nameOfSport = await nameOfSportMain(page, 7);
-        await sportMain(page, 7);
-        await expect(' ' + await catalogBreadcrumbsText(page, 2)).toBe(nameOfSport);
-        await expect(page.url()).toContain('vidy_sporta_/velosport');
+    test.each`
+        child | urlContain
+        ${1}  | ${'vidy_sporta_/beg'}
+        ${2}  | ${'catalog/trenazhery_i_fitnes_'}
+        ${3}  | ${'vidy_sporta_/boks'}
+        ${4}  | ${'vidy_sporta_/plavanie'}
+        ${5}  | ${'vidy_sporta_/tennis'}
+        ${6}  | ${'vidy_sporta_/futbol'}
+        ${7}  | ${'vidy_sporta_/velosport'}
+    `('Sports: $child icon should redirect to $url', async ({child, urlContain}) => {
+        const nameOfSport = await nameOfSportMain(page, child);
+        await sportMain(page, child);
+        if (child === 2) {
+            await expect(await catalogBreadcrumbsText(page, 1)).toBe('Тренажёры и фитнес');
+        } else {
+            await expect(' ' + await catalogBreadcrumbsText(page, 2)).toBe(nameOfSport);
+        }
+        await expect(page.url()).toContain(urlContain);
     });
 
     test('ALL Sports icon correctly redirect to catalog page', async () => {
@@ -157,132 +85,35 @@ describe('MainPage tests', () => {
         await expect(page.url()).toContain('vidy_sporta_');
     });
 
-    test('Mens wear footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 1);
-        const expectedText = await footerMenuLinkText(page, 1, 1);
-        await footerMenuLinkMain(page, 1, 1);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 1));
-        await expect(page.url()).toContain('catalog/muzhskaya_odezhda');
-    });
-
-    test('Womens wear footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 1);
-        const expectedText = await footerMenuLinkText(page, 1, 2);
-        await footerMenuLinkMain(page, 1, 2);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 1));
-        await expect(page.url()).toContain('catalog/zhenskaya_odezhda');
-    });
-
-    test('Boys wear footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 1);
-        const expectedText = await footerMenuLinkText(page, 1, 3);
-        await footerMenuLinkMain(page, 1, 3);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 1));
-        await expect(page.url()).toContain('catalog/odezhda_dlya_malchikov');
-    });
-
-    test('Girls wear footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 1);
-        const expectedText = await footerMenuLinkText(page, 1, 4);
-        await footerMenuLinkMain(page, 1, 4);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 1));
-        await expect(page.url()).toContain('catalog/odezhda_dlya_devochek');
-    });
-
-    test('Mens footwear footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 2);
-        const expectedText = await footerMenuLinkText(page, 2, 1);
-        await footerMenuLinkMain(page, 2, 1);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 1));
-        await expect(page.url()).toContain('catalog/muzhskaya_obuv');
-    });
-
-    test('Womens footwear footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 2);
-        const expectedText = await footerMenuLinkText(page, 2, 2);
-        await footerMenuLinkMain(page, 2, 2);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 1));
-        await expect(page.url()).toContain('catalog/zhenskaya_obuv');
-    });
-
-    test('Boys footwear footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 2);
-        const expectedText = await footerMenuLinkText(page, 2, 3);
-        await footerMenuLinkMain(page, 2, 3);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 1));
-        await expect(page.url()).toContain('catalog/obuv_dlya_malchikov');
-    });
-
-    test('Girls footwear footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 2);
-        const expectedText = await footerMenuLinkText(page, 2, 4);
-        await footerMenuLinkMain(page, 2, 4);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 1));
-        await expect(page.url()).toContain('catalog/obuv_dlya_devochek');
-    });
-
-    test('Backpacks footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 3);
-        const expectedText = await footerMenuLinkText(page, 3, 1);
-        await footerMenuLinkMain(page, 3, 1);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 3));
-        await expect(page.url()).toContain('aksessuary/ryukzaki_i_sumki/ryukzaki');
-    });
-
-    test('Bags footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 3);
-        const expectedText = await footerMenuLinkText(page, 3, 2);
-        await footerMenuLinkMain(page, 3, 2);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 3));
-        await expect(page.url()).toContain('aksessuary/ryukzaki_i_sumki/sumki');
-    });
-
-    test('Sunglasses footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 3);
-        const expectedText = await footerMenuLinkText(page, 3, 3);
-        await footerMenuLinkMain(page, 3, 3);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 2));
-        await expect(page.url()).toContain('catalog/aksessuary/solntsezashchitnye_ochki');
-    });
-    
-    test('Snapbacks footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 3);
-        const expectedText = await footerMenuLinkText(page, 3, 4);
-        await footerMenuLinkMain(page, 3, 4);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 3));
-        await expect(page.url()).toContain('aksessuary/golovnye_ubory/beysbolki');
-    });
-
-    test('Bicycle footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 4);
-        const expectedText = await footerMenuLinkText(page, 4, 1);
-        await footerMenuLinkMain(page, 4, 1);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 3));
-        await expect(page.url()).toContain('vidy_sporta_/velosport/velosipedy');
-    });
-
-    test('Scooters footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 4);
-        const expectedText = await footerMenuLinkText(page, 4, 2);
-        await footerMenuLinkMain(page, 4, 2);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 3));
-        await expect(page.url()).toContain('vidy_sporta_/samokaty/samokaty');
-    });
-
-    test('Rollers footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 4);
-        const expectedText = await footerMenuLinkText(page, 4, 3);
-        await footerMenuLinkMain(page, 4, 3);
-        await expect(expectedText).toBe(await catalogBreadcrumbsText(page, 2));
-        await expect(page.url()).toContain('vidy_sporta_/roliki/rolikovye_konki');
-    });
-
-    test('Skateboards footer menu link correctly redirect to catalog page', async () => {
-        await footerMenuSectionMain(page, 4);
-        const expectedText = await footerMenuLinkText(page, 4, 4);
-        await footerMenuLinkMain(page, 4, 4);
-        const breadcrumbs = await catalogBreadcrumbsText(page, 2);
-        await expect(expectedText.slice(0, 9)).toBe(breadcrumbs.slice(0, 9));
-        await expect(page.url()).toContain('vidy_sporta_/skeytbording');
+    test.each`
+        section | link  | breadlvl | urlContain
+        ${1}    | ${1}  | ${1}     | ${'catalog/muzhskaya_odezhda'}
+        ${1}    | ${2}  | ${1}     | ${'catalog/zhenskaya_odezhda'}
+        ${1}    | ${3}  | ${1}     | ${'catalog/odezhda_dlya_malchikov'}
+        ${1}    | ${4}  | ${1}     | ${'catalog/odezhda_dlya_devochek'}
+        ${2}    | ${1}  | ${1}     | ${'catalog/muzhskaya_obuv'}
+        ${2}    | ${2}  | ${1}     | ${'catalog/zhenskaya_obuv'}
+        ${2}    | ${3}  | ${1}     | ${'catalog/obuv_dlya_malchikov'}
+        ${2}    | ${4}  | ${1}     | ${'catalog/obuv_dlya_devochek'}
+        ${3}    | ${1}  | ${3}     | ${'aksessuary/ryukzaki_i_sumki/ryukzaki'}
+        ${3}    | ${2}  | ${3}     | ${'aksessuary/ryukzaki_i_sumki/sumki'}
+        ${3}    | ${3}  | ${2}     | ${'aksessuary/solntsezashchitnye_ochki'}
+        ${3}    | ${4}  | ${3}     | ${'aksessuary/golovnye_ubory/beysbolki'}
+        ${4}    | ${1}  | ${3}     | ${'vidy_sporta_/velosport/velosipedy'}
+        ${4}    | ${2}  | ${3}     | ${'vidy_sporta_/samokaty/samokaty'}
+        ${4}    | ${3}  | ${2}     | ${'vidy_sporta_/roliki/rolikovye_konki'}
+        ${4}    | ${4}  | ${2}     | ${'vidy_sporta_/skeytbording'}
+    `('Footer Menu: $section section | $link link should redirect to $url', 
+    async ({section, link, breadlvl, urlContain}) => {
+        await footerMenuSectionMain(page, section);
+        const linkText = await footerMenuLinkText(page, section, link);
+        await footerMenuLinkMain(page, section, link);
+        const breadcrumbs = await catalogBreadcrumbsText(page, breadlvl);
+        if(section === 4 && link === 4) {
+            await expect(linkText.slice(0, 9)).toBe(breadcrumbs.slice(0, 9));
+        } else {
+            await expect(linkText).toBe(breadcrumbs);
+        }
+        await expect(page.url()).toContain(urlContain);
     });
 });
