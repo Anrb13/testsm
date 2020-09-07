@@ -31,7 +31,7 @@ describe('Main Page tests', () => {
 
     test.each(
         [1, 2, 3, 4, 5, 6, 7]
-    )('Brands: %i icon clickable and correctly redirect', async(n) => {
+    )('Brands: %i icon clickable and correctly redirect', async (n) => {
         if (n === 7) {
             await allBrandsMain(page);
             await page.waitForSelector('text=/Поиск по брендам/');

@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1599502306139' stop='1599502318523'>
+    <name>OLD header tests</name>
+    <title>OLD header tests</title>
+    <test-cases>
+        <test-case start='1599502306663' status='passed' stop='1599502311180'>
+            <name>Burger icon opens sidebar and close it</name>
+            <title>Burger icon opens sidebar and close it</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1599502311180' status='passed' stop='1599502315121'>
+            <name>Search icon opens input and close it, search work correctly</name>
+            <title>Search icon opens input and close it, search work correctly</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1599502315121' status='passed' stop='1599502316692'>
+            <name>Basket icon should redirect to /basket/checkout.do</name>
+            <title>Basket icon should redirect to /basket/checkout.do</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1599502316692' status='passed' stop='1599502318139'>
+            <name>SM Logo redirect to main page</name>
+            <title>SM Logo redirect to main page</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
