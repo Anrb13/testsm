@@ -57,15 +57,6 @@ const footerMenuLinkText = async (page, n = 1, m = 1) => {
 };
 
 
-// билдер для теста
-// const footerMenuTest = async (page, section, link, bread, url) => {
-//     await footerMenuSectionMain(page, section);
-//     const expectedText = await footerMenuLinkText(page, section, link);
-//     await footerMenuLinkMain(page, section, link);
-//     await expect(expectedText).toBe(await catalogBreadcrumbsText(page, bread));
-//     await expect(page.url()).toContain(url);
-// }
-
 module.exports = {
     closeMobileAppCommerc, downloadLinkMobileAppCommerc, brandMain, 
     allBrandsMain, catalogTabsMain, sportMain, nameOfSportMain, allSportsMain, 
